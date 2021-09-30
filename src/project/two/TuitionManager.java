@@ -12,6 +12,13 @@ public class TuitionManager {
     private static final int MINIMUM_CREDITS = 3;
     private static final int MAXIMUM_CREDITS = 24;
 
+    /**
+     * Turns user input into Major object
+     *
+     * @param parse
+     * @return Major object
+     * @author Mikita Belausau
+     */
     private Major inputToMajor(String[] parse) {
         Major major = null;
         if (parse[2].equalsIgnoreCase("CS") || parse[2].equalsIgnoreCase("IT")
@@ -22,10 +29,23 @@ public class TuitionManager {
         return major;
     }
 
-    private void performCommandFourInputF(String line, Roster roster1, String[] parse){
+    private void performCommandFourInputF(String line, Roster roster1, String[] parse) {
         Student student = new Student(parse[1], inputToMajor(parse), 5);
-        Resident resident = (Resident) roster1.replaceFinancialAid(student);
-        resident.setResidentFinancialAid(Integer.valueOf(parse[3]));
+        if (roster1.studentInRoster(student) == null) {
+            System.out.println("Student not in the roster.");
+        } else if (roster1.replaceFinancialAid(student) != null) {
+            Resident resident = (Resident) roster1.replaceFinancialAid(student);
+            if (resident.financialAid()) {
+                System.out.println("Awarded once already.");
+            } else if (resident.getTotalCreditHours() < 12) {
+                System.out.println("Parttime student doesn't qualify for the award.");
+            } else {
+                resident.setResidentFinancialAid(Integer.valueOf(parse[3]));
+                resident.setFinancialAidRecieved(true);
+            }
+        } else {
+            System.out.println("Not a resident student.");
+        }
     }
 
     private void performCommandFourInputsAR(String line, Roster roster1, String[] parse) {
@@ -107,13 +127,11 @@ public class TuitionManager {
     }
 
     private boolean parseLengthFourValidCheckRosterSetFinancialAidOrStudyAbroad(String[] parse) {
-        if(parse.length != 4){
+        if (parse.length != 4) {
             return false;
-        }
-        else if (!(parse[0].equals("F") || parse[0].equals("S"))) {
+        } else if (!(parse[0].equals("F") || parse[0].equals("S"))) {
             return false;
-        }
-        else if(((parse[0].equals("F")) && (!((((Integer.valueOf(parse[3])) < 10000)) || (Integer.valueOf(parse[3])>0))))){
+        } else if (((parse[0].equals("F")) && (!((((Integer.valueOf(parse[3])) < 10000)) || (Integer.valueOf(parse[3]) > 0))))) {
             return false;
         }
         return true;

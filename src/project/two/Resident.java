@@ -7,6 +7,7 @@ public class Resident extends Student {
     private static final int RESIDENT_TUITION_FULL_TIME = 12536;
     private int RESIDENT_TUITION_PART_TIME = 404 * getTotalCreditHours();
     private static final int RESIDENT_FINANCIAL_AID = 10000;
+    private boolean recievedFinancialAid = false;
 
     public Resident(String name, Major major, int TOTAL_CREDIT_HOURS) {
         super(name, major, TOTAL_CREDIT_HOURS);
@@ -31,6 +32,14 @@ public class Resident extends Student {
 
     public void setResidentFinancialAid(int financialAid) {
             this.setTuitionDue(this.getTuitionDue() - financialAid);
+    }
+
+    public void setFinancialAidRecieved(boolean financialAid){
+        this.recievedFinancialAid = financialAid;
+    }
+
+    public boolean financialAid(){
+        return this.recievedFinancialAid;
     }
 
     /**

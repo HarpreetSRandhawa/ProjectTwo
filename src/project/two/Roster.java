@@ -107,10 +107,30 @@ public class Roster {
         return false;
     }
 
+    /**
+     * Check to see if the students in the roster for usage in TuitionManager
+     * @param student
+     * @return
+     */
+    public Student studentInRoster(Student student){
+        int i = find(student);
+        if(i == NOT_FOUND){
+            return null;
+        }
+        return roster[i];
+    }
+
+    /**
+     *
+     * @param student
+     * @return
+     */
     public Student replaceFinancialAid(Student student){
         int i = find(student);
         if(i != -1){
-            return roster[i];
+            if(roster[i] instanceof Resident) {
+                return roster[i];
+            }
         }
         return null;
     }
