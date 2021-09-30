@@ -9,15 +9,15 @@ public class Student {
     private int TOTAL_CREDIT_HOURS;
     public static final int UNIVERSITY_FEE_FULL_TIME = 3268;
     public static final double UNIVERSITY_FEE_PART_TIME = 0.80 * UNIVERSITY_FEE_FULL_TIME;
-    private static final int MINIMUM_CREDITS = 3;
-    private static final int MAXIMUM_CREDITS = 24;
     private double tuitionDue;
+    private Profile profile;
 
     public Student(String name, Major major, int TOTAL_CREDIT_HOURS) {
         this.name = name;
         this.major = major;
         this.TOTAL_CREDIT_HOURS = TOTAL_CREDIT_HOURS;
-        Profile profile = new Profile(this.name, this.major);
+        this.profile = new Profile(this.name, this.major);
+        this.tuitionDue();
     }
 
 
@@ -61,6 +61,16 @@ public class Student {
     // @Override
     public String toString() {
         return "Will Do later";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Student profileObject = Student.class.cast(obj);
+        if (this.profile.equals(profileObject.profile)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

@@ -4,11 +4,16 @@
 package project.two;
 
 public class TriState extends NonResident {
-	public static final int NYC_DISCOUNT = 4000;
-	public static final int CT_DISCOUNT = 5000;
+    private static final String NY = "NY";
+    private static final String CT = "CT";
+	private static final int NYC_DISCOUNT = 4000;
+	private static final int CT_DISCOUNT = 5000;
+    private String triState;
 
-    public TriState(String name, Major major, int TOTAL_CREDIT_HOURS){
+    public TriState(String name, Major major, int TOTAL_CREDIT_HOURS, String triState){
         super(name, major, TOTAL_CREDIT_HOURS);
+        this.triState = triState;
+      //  this.tuitionDue();
     }
 
 
