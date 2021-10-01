@@ -2,6 +2,7 @@
  * @author Mikita Belausau, Harpreet Randhawa
  */
 package project.two;
+// harpreet test comment
 
 public class Student {
     private String name;
