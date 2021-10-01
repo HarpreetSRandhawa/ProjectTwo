@@ -49,6 +49,7 @@ public class TriState extends NonResident {
         	}
         }
     }
+
     
     /**
     Creates a textual representation of tri-state in proper format

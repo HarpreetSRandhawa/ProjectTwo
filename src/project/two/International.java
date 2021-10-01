@@ -12,6 +12,7 @@ public class International extends NonResident {
     public International(String name, Major major, int TOTAL_CREDIT_HOURS, boolean studyAbroad){
         super(name, major, TOTAL_CREDIT_HOURS);
         this.studyAbroad = studyAbroad;
+        tuitionDue();
     }
 
     public boolean getStudyAbroadStatus(){
