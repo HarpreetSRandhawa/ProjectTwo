@@ -58,12 +58,12 @@ public class TuitionManager {
     }
     
     /**
-    * Reads the student roster input and 
+    * Updates the abroad status, total credit hours, tuition due, and payment dates for International students.
     
     * @param line The input line
     * @param roster1 The roster of students
     * @param parse The given input string
-    * @return The desired string output 
+    * @return The desired print output 
     * @author Harpreet Randhawa
     */
     private void performCommandFourInputS(String line, Roster roster1, String[] parse) {
@@ -77,14 +77,10 @@ public class TuitionManager {
                 System.out.println("Parttime student doesn't qualify for the award.");
             } 
             else {
-            	System.out.println("BEFORE: " + international.getTuitionDue());
-            	System.out.println("BEFORE: " + international.getStudyAbroadStatus());
             	international.setStudyAbroadStatus(true);
             	international.setTotalCreditHours(12);
             	international.setTuitionDue(0);
             	international.tuitionDue();
-            	System.out.println("AFTER: " + international.getTuitionDue());
-            	System.out.println("AFTER: " + international.getStudyAbroadStatus());
             	//Clear the payment date?
                 System.out.println("Tuition updated.");
             }
@@ -102,9 +98,10 @@ public class TuitionManager {
 
     private void performCommandFourInputAT(String line, Roster roster1, String[] parse) {
         TriState triState = new TriState(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]), parse[4].toUpperCase());
-        if (roster1.add(triState)) {
+        if ((roster1.add(triState))) {
             System.out.println("Student added.");
-        } else {
+        } 
+        else {
             System.out.println("Student is already in the roster");
         }
     }
@@ -117,7 +114,16 @@ public class TuitionManager {
             System.out.println("Student is already in the roster");
         }
     }
-
+    
+    /**
+    * Checks to see if the given input for AI is correct and outputs the desired prints
+    
+    * @param line The input line
+    * @param roster1 The roster of students
+    * @param parse The given input string
+    * @return The desired print output 
+    * @author Harpreet Randhawa
+    */
     private void performCommandFourInputAI(String line, Roster roster1, String[] parse) {
         International international = new International(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]), Boolean.valueOf(parse[4]));
         if (roster1.add(international) && Integer.valueOf(parse[3]) >= 12) {
@@ -202,17 +208,6 @@ public class TuitionManager {
         }
         return true;
     }
-    
-    private boolean validityCheckS(String[] parse) {
-        if (parse.length == 3) {
-            System.out.println("Missing the amount.");
-            return false;
-        } else if (((parse[0].equals("F")) && (!((((Integer.valueOf(parse[3])) < 10000)) || (Integer.valueOf(parse[3]) > 0))))) {
-            System.out.println("Invalid amount.");
-            return false;
-        }
-        return true;
-    }
 
     private void performCommands(String line, Roster roster1) {
         String[] parse = line.split(",");
@@ -226,19 +221,13 @@ public class TuitionManager {
             performCommandFourInputAT(line, roster1, parse);
         } else if ((parse[0].equals("F"))) {
             performCommandFourInputF(line, roster1, parse);
-        } else if ((parse[0].equals("S"))) {
-            performCommandFourInputS(line, roster1, parse);
-        }
-        
+        } 
     }
 
     private boolean isValidInput(String line) {
         String[] parse = line.split(",");
         if ((parse[0].equals("F"))) {
             validityCheckF(parse);
-        }
-        if ((parse[0].equals("S"))) {
-            validityCheckS(parse);
         } else if (parse[0].equals("AR") || parse[0].equals("AN") || parse[0].equals("AI") || parse[0].equals("AT")) {
             return validCheckRosterAdd(parse);
         } else if (parse.length == 1) {

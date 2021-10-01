@@ -13,10 +13,10 @@ public class Student {
     private Profile profile;
 
     public Student(String name, Major major, int TOTAL_CREDIT_HOURS) {
-        this.name = name;
-        this.major = major;
+        this.setName(name);
+        this.setMajor(major);
         this.TOTAL_CREDIT_HOURS = TOTAL_CREDIT_HOURS;
-        this.profile = new Profile(this.name, this.major);
+        this.profile = new Profile(this.getName(), this.getMajor());
         this.tuitionDue();
     }
 
@@ -28,13 +28,56 @@ public class Student {
     public double getTuitionDue(){
         return this.tuitionDue;
     }
+    
     public void setTuitionDue(double tuitionDue){
         this.tuitionDue = tuitionDue;
     }
+    
+    /**
+    * Get the student's name.
+    
+    * @return name
+    * @author Harpreet Randhawa
+    */
+	public String getName() {
+		return name;
+	}
 
     /**
-    * Get the hours of the part time student
-    *
+    * Setter for the student's name.
+    
+    * @return this.name
+    * @param name Student's name
+    * @author Harpreet Randhawa
+    */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+    /**
+    * Get the student's major.
+    
+    * @return major
+    * @author Harpreet Randhawa
+    */
+	public Major getMajor() {
+		return major;
+	}
+
+    /**
+    * Setter for the student's major.
+    
+    * @return this.jaor
+    * @param major Student's major
+    * @author Harpreet Randhawa
+    */
+	public void setMajor(Major major) {
+		this.major = major;
+	}
+
+    /**
+    * Get the hours of the part time student.
+    
     * @return TOTAL_CREDIT_HOURS
     * @author Harpreet Randhawa
     */
@@ -73,5 +116,6 @@ public class Student {
             return false;
         }
     }
+
 
 }

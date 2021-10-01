@@ -49,8 +49,12 @@ public class Resident extends Student {
      * @author Harpreet Randhawa
      */
     // @Override
-    public String toString() {
-        return "Will Do later";
-    }
+//    public String toString() {
+//    	//toString finished, just need the data from last payments
+//        
+//    	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
+//    			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + /* last payment amount */ +
+//    			":" + "payment date:" + /* last payment date */ + ":" + "resident"; 		
+//    }
 
 }
