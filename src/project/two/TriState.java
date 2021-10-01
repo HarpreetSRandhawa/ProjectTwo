@@ -34,6 +34,7 @@ public class TriState extends NonResident {
                     + UNIVERSITY_FEE_FULL_TIME);
         }
     }
+
     
     /**
     Creates a textual representation of tri-state in proper format
