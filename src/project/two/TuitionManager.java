@@ -7,8 +7,6 @@ import java.util.Scanner;
 
 public class TuitionManager {
 
-    private static final int parseLengthThree = 3;
-    private static final int parseLengthFour = 4;
     private static final int MINIMUM_CREDITS = 3;
     private static final int MAXIMUM_CREDITS = 24;
 
@@ -19,6 +17,16 @@ public class TuitionManager {
      * @return Major object
      * @author Mikita Belausau
      */
+    private boolean majorCheck(String[] parse) {
+        if (parse[2].equalsIgnoreCase("CS") || parse[2].equalsIgnoreCase("IT")
+                || parse[2].equalsIgnoreCase("BA") || parse[2].equalsIgnoreCase("EE") ||
+                parse[2].equalsIgnoreCase("ME")) {
+            return true;
+        }
+        System.out.println("'" + parse[2] + "' is not a valid major.");
+        return false;
+    }
+
     private Major inputToMajor(String[] parse) {
         Major major = null;
         if (parse[2].equalsIgnoreCase("CS") || parse[2].equalsIgnoreCase("IT")
@@ -42,6 +50,7 @@ public class TuitionManager {
             } else {
                 resident.setResidentFinancialAid(Integer.valueOf(parse[3]));
                 resident.setFinancialAidRecieved(true);
+                System.out.println("Tuition updated.");
             }
         } else {
             System.out.println("Not a resident student.");
@@ -85,13 +94,16 @@ public class TuitionManager {
     }
 
     private boolean creditHourCheck(String[] parse) {
-        if (!((Integer.valueOf(parse[3]) > 0))) {
+        if (!(parse[3].matches("-?\\d+"))) {
+            System.out.println("Invalid credit numbers.");
+            return false;
+        } else if (((Integer.valueOf(parse[3]) < 0))) {
             System.out.println("Credit hours cannot be negative.");
             return false;
-        } else if (!((Integer.valueOf(parse[3]) > MINIMUM_CREDITS))) {
+        } else if (((Integer.valueOf(parse[3]) < MINIMUM_CREDITS))) {
             System.out.println("Minimum credit hours is 3.");
             return false;
-        } else if (!((Integer.valueOf(parse[3]) < MAXIMUM_CREDITS))) {
+        } else if (((Integer.valueOf(parse[3]) > MAXIMUM_CREDITS))) {
             System.out.println("Credit hours exceed the maximum 24.");
             return false;
         }
@@ -116,22 +128,38 @@ public class TuitionManager {
         return true;
     }
 
-    private boolean parseLengthFourValidCheckRosterAdd(String[] parse) {
-        if (!(parse[0].equals("AR") || parse[0].equals("AN") || parse[0].equals("AI") || parse[0].equals("AT"))) {
+    private boolean validCheckRosterAdd(String[] parse) {
+        if (parse.length == 1) {
+            System.out.println("Missing data in command line.");
             return false;
-        }
-        if (!(creditHourCheck(parse))) {
+        } else if (parse.length == 2) {
+            System.out.println("Missing data in command line.");
+            return false;
+        } else if (parse.length == 3) {
+            System.out.println("Credit hours missing.");
+            return false;
+        } else if (!(majorCheck(parse))) {
+            return false;
+        }else if (!(creditHourCheck(parse))) {
             return false;
         }
         return true;
     }
 
-    private boolean parseLengthFourValidCheckRosterSetFinancialAidOrStudyAbroad(String[] parse) {
-        if (parse.length != 4) {
+    private boolean validityCheckOne(String[] parse) {
+        if (!(parse[0].equals("C") || parse[0].equals("P") || parse[0].equals("PN") || parse[0].equals("PT"))) {
+            System.out.println("Command '" + parse[0] + "' not supported!");
             return false;
-        } else if (!(parse[0].equals("F") || parse[0].equals("S"))) {
+        }
+        return true;
+    }
+
+    private boolean validityCheckF(String[] parse) {
+        if (parse.length == 3) {
+            System.out.println("Missing the amount.");
             return false;
         } else if (((parse[0].equals("F")) && (!((((Integer.valueOf(parse[3])) < 10000)) || (Integer.valueOf(parse[3]) > 0))))) {
+            System.out.println("Invalid amount.");
             return false;
         }
         return true;
@@ -139,29 +167,29 @@ public class TuitionManager {
 
     private void performCommands(String line, Roster roster1) {
         String[] parse = line.split(",");
-        if ((parse.length == parseLengthFour) && (parse[0].equals("AR"))) {
+        if ((parse[0].equals("AR"))) {
             performCommandFourInputsAR(line, roster1, parse);
-        } else if ((parse.length == parseLengthFour) && (parse[0].equals("AN"))) {
+        } else if ((parse[0].equals("AN"))) {
             performCommandFourInputAN(line, roster1, parse);
-        } else if ((parse.length == parseLengthFour) && (parse[0].equals("AI"))) {
+        } else if ((parse[0].equals("AI"))) {
             performCommandFourInputAI(line, roster1, parse);
-        } else if ((parse.length == parseLengthFour) && (parse[0].equals("AT"))) {
+        } else if ((parse[0].equals("AT"))) {
             performCommandFourInputAT(line, roster1, parse);
-        } else if ((parse.length == parseLengthFour) && (parse[0].equals("F"))) {
+        } else if ((parse[0].equals("F"))) {
             performCommandFourInputF(line, roster1, parse);
         }
     }
 
     private boolean isValidInput(String line) {
         String[] parse = line.split(",");
-        if ((parse.length == parseLengthFour) && (!(parse[0].equals("S") || parse[0].equals("F")))) {
-            return parseLengthFourValidCheckRosterAdd(parse);
-        } else if (parse.length == parseLengthFour) {
-            return parseLengthFourValidCheckRosterSetFinancialAidOrStudyAbroad(parse);
-        } else if (parse.length == parseLengthThree) {
-            return parseLengthThreeValidCheckRosterDelete(parse);
+        if ((parse[0].equals("F"))) {
+            validityCheckF(parse);
+        } else if (parse[0].equals("AR") || parse[0].equals("AN") || parse[0].equals("AI") || parse[0].equals("AT")) {
+            return validCheckRosterAdd(parse);
+        } else if (parse.length == 1) {
+            return validityCheckOne(parse);
         }
-        return false;
+        return true;
     }
 
     /**
@@ -179,8 +207,6 @@ public class TuitionManager {
                 performCommands(line, rosters1);
             } else if ((line.equals("\n")) || (line.equals(""))) {
                 ;
-            } else {
-                System.out.println("Command '" + line + "' not supported!");
             }
         }
     }
