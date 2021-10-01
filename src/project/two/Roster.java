@@ -7,32 +7,32 @@ public class Roster {
     private Student[] roster;
     private int size; //keep track of the number of students in the roster
 
+    private static final int GROWTH_FACTOR = 4;
+    private static final int NOT_FOUND = -1;
+    
     public Roster() {
         this.roster = new Student[4];
         this.size = 0;
     }
-
-    private static final int GROWTH_FACTOR = 4;
-    private static final int NOT_FOUND = -1;
-
+    
     /**
-     Returns the size of the roster.
+    Returns the size of the roster.
 
-     @return Roster size.
-     @author Harpreet Randhawa
-     */
+    @return Roster size.
+    @author Harpreet Randhawa
+    */
     public int getSize() {
         return size;
     }
 
     /**
-     Iterates through roster to find the given student's index.
-     If index is not found, returns -1.
+    Iterates through roster to find the given student's index.
+    If index is not found, returns -1.
 
-     @return The album's index. Returns NOT_FOUND if index is not found.
-     @param student The given student to be searched.
-     @author Harpreet Randhawa
-     */
+    @return The album's index. Returns NOT_FOUND if index is not found.
+    @param student The given student to be searched.
+    @author Harpreet Randhawa
+    */
     private int find(Student student) {
         for (int i = 0; i < size; i++) {
             if (roster[i].equals(student)) {
@@ -43,10 +43,10 @@ public class Roster {
     }
 
     /**
-     Automatically grow the array list when it reaches full capacity.
+    Automatically grow the array list when it reaches full capacity.
 
-     @author Harpreet Randhawa
-     */
+    @author Harpreet Randhawa
+    */
     private void grow() {
         Roster increasedRoster = new Roster();
         increasedRoster.roster = new Student[this.roster.length + GROWTH_FACTOR];
@@ -57,12 +57,12 @@ public class Roster {
     }
 
     /**
-     Adds the given student to the array list.
+    Adds the given student to the array list.
 
-     @return True if the student was added successfully and false otherwise.
-     @param student The given student to be added.
-     @author Harpreet Randhawa
-     */
+    @return True if the student was added successfully and false otherwise.
+    @param student The given student to be added.
+    @author Harpreet Randhawa
+    */
     public boolean add(Student student) {
         if (find(student) != NOT_FOUND) {
             return false;
@@ -81,12 +81,12 @@ public class Roster {
     }
 
     /**
-     Removes the given student from the array list while maintaining the relative sequence of the objects.
+    Removes the given student from the array list while maintaining the relative sequence of the objects.
 
-     @return True if the student was removed successfully and false otherwise.
-     @param student The given student to be removed.
-     @author Harpreet Randhawa
-     */
+    @return True if the student was removed successfully and false otherwise.
+    @param student The given student to be removed.
+    @author Harpreet Randhawa
+    */
     public boolean remove(Student student) {
         if (find(student) != NOT_FOUND) {
             return false;
@@ -108,10 +108,12 @@ public class Roster {
     }
 
     /**
-     * Check to see if the students in the roster for usage in TuitionManager
-     * @param student
-     * @return
-     */
+    * Check to see if the students in the roster for usage in TuitionManager.
+    
+    * @param student
+    * @return The student or null if the student is not in the roster.
+    * @author Mikita Belausau
+    */
     public Student studentInRoster(Student student){
         int i = find(student);
         if(i == NOT_FOUND){
@@ -121,14 +123,33 @@ public class Roster {
     }
 
     /**
-     *
-     * @param student
-     * @return
-     */
+    * 
+    
+    * @param student
+    * @return The student or null if the student is not in the roster.
+    * @author Mikita Belausau
+    */
     public Student replaceFinancialAid(Student student){
         int i = find(student);
         if(i != -1){
             if(roster[i] instanceof Resident) {
+                return roster[i];
+            }
+        }
+        return null;
+    }
+    
+    /**
+    * Checks if the given student is an international student or not.
+    
+    * @param student
+    * @return The student or null if the student is not in the roster.
+    * @author Harpreet Randhawa
+    */
+    public Student replaceStudyAbroad(Student student){
+        int i = find(student);
+        if(i != -1){
+            if(roster[i] instanceof International) {
                 return roster[i];
             }
         }

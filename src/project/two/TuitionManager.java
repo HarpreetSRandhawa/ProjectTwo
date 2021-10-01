@@ -56,6 +56,40 @@ public class TuitionManager {
             System.out.println("Not a resident student.");
         }
     }
+    
+    /**
+    * Reads the student roster input and 
+    
+    * @param line The input line
+    * @param roster1 The roster of students
+    * @param parse The given input string
+    * @return The desired string output 
+    * @author Harpreet Randhawa
+    */
+    private void performCommandFourInputS(String line, Roster roster1, String[] parse) {
+        Student student = new Student(parse[1], inputToMajor(parse), 5);
+        if (roster1.studentInRoster(student) == null) {
+            System.out.println("Couldn't find the international student.");
+        } 
+        else if (roster1.replaceStudyAbroad(student) != null) {
+            International international = (International) roster1.replaceStudyAbroad(student);
+            if (international.getTotalCreditHours() < 12) {
+                System.out.println("Parttime student doesn't qualify for the award.");
+            } 
+            else {
+            	System.out.println("BEFORE: " + international.getTuitionDue());
+            	System.out.println("BEFORE: " + international.getStudyAbroadStatus());
+            	international.setStudyAbroadStatus(true);
+            	international.setTotalCreditHours(12);
+            	international.setTuitionDue(0);
+            	international.tuitionDue();
+            	System.out.println("AFTER: " + international.getTuitionDue());
+            	System.out.println("AFTER: " + international.getStudyAbroadStatus());
+            	//Clear the payment date?
+                System.out.println("Tuition updated.");
+            }
+        } 
+    }
 
     private void performCommandFourInputsAR(String line, Roster roster1, String[] parse) {
         Resident resident = new Resident(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]));
@@ -86,10 +120,11 @@ public class TuitionManager {
 
     private void performCommandFourInputAI(String line, Roster roster1, String[] parse) {
         International international = new International(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]), Boolean.valueOf(parse[4]));
-        if (roster1.add(international)) {
+        if (roster1.add(international) && Integer.valueOf(parse[3]) >= 12) {
             System.out.println("Student added.");
-        } else {
-            System.out.println("Student is already in the roster");
+        } 
+        else {
+            System.out.println("International students must enroll at least 12 credits.");
         }
     }
 
@@ -97,13 +132,16 @@ public class TuitionManager {
         if (!(parse[3].matches("-?\\d+"))) {
             System.out.println("Invalid credit numbers.");
             return false;
-        } else if (((Integer.valueOf(parse[3]) < 0))) {
+        } 
+        else if (((Integer.valueOf(parse[3]) < 0))) {
             System.out.println("Credit hours cannot be negative.");
             return false;
-        } else if (((Integer.valueOf(parse[3]) < MINIMUM_CREDITS))) {
+        } 
+        else if (((Integer.valueOf(parse[3]) < MINIMUM_CREDITS))) {
             System.out.println("Minimum credit hours is 3.");
             return false;
-        } else if (((Integer.valueOf(parse[3]) > MAXIMUM_CREDITS))) {
+        } 
+        else if (((Integer.valueOf(parse[3]) > MAXIMUM_CREDITS))) {
             System.out.println("Credit hours exceed the maximum 24.");
             return false;
         }
@@ -164,6 +202,17 @@ public class TuitionManager {
         }
         return true;
     }
+    
+    private boolean validityCheckS(String[] parse) {
+        if (parse.length == 3) {
+            System.out.println("Missing the amount.");
+            return false;
+        } else if (((parse[0].equals("F")) && (!((((Integer.valueOf(parse[3])) < 10000)) || (Integer.valueOf(parse[3]) > 0))))) {
+            System.out.println("Invalid amount.");
+            return false;
+        }
+        return true;
+    }
 
     private void performCommands(String line, Roster roster1) {
         String[] parse = line.split(",");
@@ -177,13 +226,19 @@ public class TuitionManager {
             performCommandFourInputAT(line, roster1, parse);
         } else if ((parse[0].equals("F"))) {
             performCommandFourInputF(line, roster1, parse);
+        } else if ((parse[0].equals("S"))) {
+            performCommandFourInputS(line, roster1, parse);
         }
+        
     }
 
     private boolean isValidInput(String line) {
         String[] parse = line.split(",");
         if ((parse[0].equals("F"))) {
             validityCheckF(parse);
+        }
+        if ((parse[0].equals("S"))) {
+            validityCheckS(parse);
         } else if (parse[0].equals("AR") || parse[0].equals("AN") || parse[0].equals("AI") || parse[0].equals("AT")) {
             return validCheckRosterAdd(parse);
         } else if (parse.length == 1) {

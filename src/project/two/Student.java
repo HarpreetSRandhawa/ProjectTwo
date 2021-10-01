@@ -2,7 +2,6 @@
  * @author Mikita Belausau, Harpreet Randhawa
  */
 package project.two;
-// harpreet test comment
 
 public class Student {
     private String name;
@@ -34,31 +33,32 @@ public class Student {
     }
 
     /**
-     * Get the hours of the part time student
-     *
-     * @return partTimeHours
-     * @author Harpreet Randhawa
-     */
+    * Get the hours of the part time student
+    *
+    * @return TOTAL_CREDIT_HOURS
+    * @author Harpreet Randhawa
+    */
     public int getTotalCreditHours() {
         return this.TOTAL_CREDIT_HOURS;
     }
 
     /**
-     * Set the hours of the part time student
-     *
-     * @return partTimeHours
-     * @author Harpreet Randhawa
-     */
-    public void setTotal_CREDIT_HOURS(int partTimeHours) {
+    * Set the hours of the part time student
+    
+    * @param partTimeHours 
+    * @return partTimeHours
+    * @author Harpreet Randhawa
+    */
+    public void setTotalCreditHours(int partTimeHours) {
         this.TOTAL_CREDIT_HOURS = partTimeHours;
     }
 
     /**
-     * Creates a textual representation of a student in proper format
-     *
-     * @return Returns student information
-     * @author Harpreet Randhawa
-     */
+    * Creates a textual representation of a student in proper format
+    *
+    * @return Returns student information
+    * @author Harpreet Randhawa
+    */
     // @Override
     public String toString() {
         return "Will Do later";
