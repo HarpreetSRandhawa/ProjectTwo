@@ -58,7 +58,6 @@ public class TuitionManager {
     }
 
     /**
-<<<<<<< HEAD
     * Updates the abroad status, total credit hours, tuition due, and payment dates for International students.
     
     * @param line The input line
@@ -67,16 +66,6 @@ public class TuitionManager {
     * @return The desired print output 
     * @author Harpreet Randhawa
     */
-=======
-     * Reads the student roster input and
-     *
-     * @param line    The input line
-     * @param roster1 The roster of students
-     * @param parse   The given input string
-     * @return The desired string output
-     * @author Harpreet Randhawa
-     */
->>>>>>> 73fbeba4ae7b8445840983d3cda3ff3f030c25dc
     private void performCommandFourInputS(String line, Roster roster1, String[] parse) {
         Student student = new Student(parse[1], inputToMajor(parse), 5);
         if (roster1.studentInRoster(student) == null) {
@@ -85,16 +74,8 @@ public class TuitionManager {
             International international = (International) roster1.replaceStudyAbroad(student);
             if (international.getTotalCreditHours() < 12) {
                 System.out.println("Parttime student doesn't qualify for the award.");
-<<<<<<< HEAD
             } 
             else {
-            	international.setStudyAbroadStatus(true);
-            	international.setTotalCreditHours(12);
-            	international.setTuitionDue(0);
-            	international.tuitionDue();
-            	//Clear the payment date?
-=======
-            } else {
                 System.out.println("BEFORE: " + international.getTuitionDue());
                 System.out.println("BEFORE: " + international.getStudyAbroadStatus());
                 international.setStudyAbroadStatus(true);
@@ -104,7 +85,6 @@ public class TuitionManager {
                 System.out.println("AFTER: " + international.getTuitionDue());
                 System.out.println("AFTER: " + international.getStudyAbroadStatus());
                 //Clear the payment date?
->>>>>>> 73fbeba4ae7b8445840983d3cda3ff3f030c25dc
                 System.out.println("Tuition updated.");
             }
         }
@@ -230,20 +210,6 @@ public class TuitionManager {
         }
         return true;
     }
-<<<<<<< HEAD
-=======
-
-    private boolean validityCheckS(String[] parse) {
-        if (parse.length == 3) {
-            System.out.println("Missing the amount.");
-            return false;
-        } else if (((parse[0].equals("F")) && (!((((Integer.valueOf(parse[3])) < 10000)) || (Integer.valueOf(parse[3]) > 0))))) {
-            System.out.println("Invalid amount.");
-            return false;
-        }
-        return true;
-    }
->>>>>>> 73fbeba4ae7b8445840983d3cda3ff3f030c25dc
 
     private void performCommands(String line, Roster roster1) {
         String[] parse = line.split(",");
@@ -257,15 +223,8 @@ public class TuitionManager {
             performCommandFourInputAT(line, roster1, parse);
         } else if ((parse[0].equals("F"))) {
             performCommandFourInputF(line, roster1, parse);
-<<<<<<< HEAD
         } 
-=======
-        } else if ((parse[0].equals("S"))) {
-            performCommandFourInputS(line, roster1, parse);
         }
-
->>>>>>> 73fbeba4ae7b8445840983d3cda3ff3f030c25dc
-    }
 
     private boolean isValidInput(String line) {
         String[] parse = line.split(",");
