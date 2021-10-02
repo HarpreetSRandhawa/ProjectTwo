@@ -98,8 +98,27 @@ public class TuitionManager {
             System.out.println("Student is already in the roster");
         }
     }
-
+    
+    /**
+    * Checks to see if the given input for AT is correct and outputs the desired prints
+    
+    * @param line The input line
+    * @param roster1 The roster of students
+    * @param parse The given input string
+    * @return The desired print output 
+    * @author Harpreet Randhawa
+    */
     private void performCommandFourInputAT(String line, Roster roster1, String[] parse) {
+        final int PROPER_LENGTH = 5;
+        
+    	if(parse.length != PROPER_LENGTH) {
+    		System.out.println("Missing data in command line.");
+    		return;
+    	}
+    	if(((parse[4].equals("NN")) == true)) {
+    		System.out.println("Not part of the tri-state area.");
+    		return;
+    	}
         TriState triState = new TriState(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]), parse[4].toUpperCase());
         if ((roster1.add(triState))) {
             System.out.println("Student added.");
@@ -133,15 +152,15 @@ public class TuitionManager {
             if(roster1.add(international)){
                 System.out.println("Student added.");
             }
-            else {
-                System.out.println("International students must enroll at least 12 credits.");
-            }
+        }
+        else {
+            System.out.println("International students must enroll at least 12 credits.");
         }
     }
 
     private boolean creditHourCheck(String[] parse) {
         if (!(parse[3].matches("-?\\d+"))) {
-            System.out.println("Invalid credit numbers.");
+            System.out.println("Invalid credit hours.");
             return false;
         } else if (((Integer.valueOf(parse[3]) < 0))) {
             System.out.println("Credit hours cannot be negative.");
@@ -165,6 +184,27 @@ public class TuitionManager {
             System.out.println("Student is not in the roster.");
             return false;
         }
+    }
+    
+    /**
+    * Prints out the roster in no particular order.
+    
+    * @param line The input line
+    * @param roster1 The roster of students
+    * @param parse The given input string
+    * @return The student roster.
+    * @author Harpreet Randhawa
+    */
+    private void performCommandPrint(String line, Roster roster1, String[] parse) {
+    	if(roster1.getSize() == 0) {
+    		System.out.println("Student roster is empty!");
+    	}
+    	else {
+    		for(int i = 0; i < roster1.getSize(); i++) {
+    			System.out.println(roster1.getRoster()[i]);
+    		}
+    	}
+
     }
 
     private boolean parseLengthThreeValidCheckRosterDelete(String[] parse) {
@@ -223,7 +263,10 @@ public class TuitionManager {
             performCommandFourInputAT(line, roster1, parse);
         } else if ((parse[0].equals("F"))) {
             performCommandFourInputF(line, roster1, parse);
-        } 
+        } else if ((parse[0].equals("P"))) {
+        	performCommandPrint(line, roster1, parse);
+        }
+        
         }
 
     private boolean isValidInput(String line) {

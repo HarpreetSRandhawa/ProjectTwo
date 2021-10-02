@@ -11,7 +11,16 @@ public class TriState extends NonResident {
     private int TRI_STATE_TUITION_PART_TIME = 966 * getTotalCreditHours();
     private String triState;
 
-
+    /**
+    * Allows for proper calculation of tutionDue for an Tri-state student
+    
+    * @param name
+    * @param major
+    * @param TOTAL_CREDIT_HOURS
+    * @param studyAbroad
+    * @return the tuition due for a Tri-state student
+    * @author Mikita Belausau
+    */
     public TriState(String name, Major major, int TOTAL_CREDIT_HOURS, String triState){
         super(name, major, TOTAL_CREDIT_HOURS);
         this.triState = triState;

@@ -35,6 +35,7 @@ public class Profile {
     @return Returns profile information
     @author Harpreet Randhawa
     */
+    //Not sure if toString is needed/required for Profile class
    // @Override
    // public String toString() {
         // John Doe:EE:18 credit hours:tuition due:16,612.00:last payment:0.00:payment date: --/--/--:resident

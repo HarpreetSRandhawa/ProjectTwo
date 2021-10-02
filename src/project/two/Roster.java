@@ -11,19 +11,40 @@ public class Roster {
     private static final int NOT_FOUND = -1;
     
     public Roster() {
-        this.roster = new Student[4];
+        this.setRoster(new Student[4]);
         this.size = 0;
     }
     
     /**
     Returns the size of the roster.
-
-    @return Roster size.
+	
+    @return size Roster size.
     @author Harpreet Randhawa
     */
     public int getSize() {
         return size;
     }
+    
+    /**
+    Getter for roster.
+
+    @return roster Student roster
+    @author Harpreet Randhawa
+    */
+	public Student[] getRoster() {
+		return roster;
+	}
+	
+    /**
+    Setter for roster.
+
+	@param roster Student roster
+    @return this.roster
+    @author Harpreet Randhawa
+    */
+	public void setRoster(Student[] roster) {
+		this.roster = roster;
+	}
 
     /**
     Iterates through roster to find the given student's index.
@@ -35,7 +56,7 @@ public class Roster {
     */
     private int find(Student student) {
         for (int i = 0; i < size; i++) {
-            if (roster[i].equals(student)) {
+            if (getRoster()[i].equals(student)) {
                 return i;
             }
         }
@@ -49,11 +70,11 @@ public class Roster {
     */
     private void grow() {
         Roster increasedRoster = new Roster();
-        increasedRoster.roster = new Student[this.roster.length + GROWTH_FACTOR];
+        increasedRoster.setRoster(new Student[this.getRoster().length + GROWTH_FACTOR]);
         for (int i = 0; i < size; i++) {
-            increasedRoster.roster[i] = this.roster[i];
+            increasedRoster.getRoster()[i] = this.getRoster()[i];
         }
-        this.roster = increasedRoster.roster;
+        this.setRoster(increasedRoster.getRoster());
     }
 
     /**
@@ -71,8 +92,8 @@ public class Roster {
             this.grow();
         }
         for (int i = 0; i <= size; i++) {
-            if (roster[i] == null) {
-                roster[i] = student;
+            if (getRoster()[i] == null) {
+                getRoster()[i] = student;
                 size++;
                 return true;
             }
@@ -94,10 +115,10 @@ public class Roster {
         boolean found = false;
         for (int i = 0; i < size; i++) {
             if (found == true) {
-                roster[i] = roster[i + 1];
-            } else if (roster[i].equals(student)) {
+                getRoster()[i] = getRoster()[i + 1];
+            } else if (getRoster()[i].equals(student)) {
                 found = true;
-                roster[i] = roster[i + 1];
+                getRoster()[i] = getRoster()[i + 1];
             }
         }
         if (found) {
@@ -119,7 +140,7 @@ public class Roster {
         if(i == NOT_FOUND){
             return null;
         }
-        return roster[i];
+        return getRoster()[i];
     }
 
     /**
@@ -132,8 +153,8 @@ public class Roster {
     public Student replaceFinancialAid(Student student){
         int i = find(student);
         if(i != -1){
-            if(roster[i] instanceof Resident) {
-                return roster[i];
+            if(getRoster()[i] instanceof Resident) {
+                return getRoster()[i];
             }
         }
         return null;
@@ -149,10 +170,11 @@ public class Roster {
     public Student replaceStudyAbroad(Student student){
         int i = find(student);
         if(i != -1){
-            if(roster[i] instanceof International) {
-                return roster[i];
+            if(getRoster()[i] instanceof International) {
+                return getRoster()[i];
             }
         }
         return null;
     }
+
 }

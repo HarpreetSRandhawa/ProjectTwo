@@ -8,25 +8,48 @@ public class International extends NonResident {
 	private static final int ADDITIONAL_FEE_FULL_TIME = 2650;
 	private static final int INTERNATIONAL_ADDITIONAL_FEE = 2650;
     private boolean studyAbroad;
-
+    
+    /**
+    * Allows for proper calculation of tutionDue for an International student
+    
+    * @param name
+    * @param major
+    * @param TOTAL_CREDIT_HOURS
+    * @param studyAbroad
+    * @return the tuition due for an International student
+    * @author Mikita Belausau
+    */
     public International(String name, Major major, int TOTAL_CREDIT_HOURS, boolean studyAbroad){
         super(name, major, TOTAL_CREDIT_HOURS);
         this.studyAbroad = studyAbroad;
         tuitionDue();
     }
-
+    
+    /**
+    * Get the International student's study abroad status.
+    
+    * @return this.studyAbroad.
+    * @author Harpreet Randhawa
+    */
     public boolean getStudyAbroadStatus(){
         return this.studyAbroad;
     }
-
+    
+    /**
+    * Setter for the International student's study abroad status.
+    
+    * @return this.studyAbroad.
+    * @param studyAbroad 
+    * @author Harpreet Randhawa
+    */
     public void setStudyAbroadStatus(boolean studyAbroad){
         this.studyAbroad = studyAbroad;
     }
 	
     /**
-    Calculates the tuition due for an International student
+    Calculates the tuition due for an International student.
     
-    @return International student tuition due
+    @return International student tuition due.
     @author Harpreet Randhawa
     */
     @Override
@@ -40,9 +63,9 @@ public class International extends NonResident {
     }
     
     /**
-    Creates a textual representation of an international student in proper format
+    Creates a textual representation of an international student in proper format.
     
-    @return Returns international student information
+    @return Returns international student information.
     @author Harpreet Randhawa
     */
     // @Override
@@ -62,5 +85,5 @@ public class International extends NonResident {
 //    }
 //
 //  }
-
+//
 }
