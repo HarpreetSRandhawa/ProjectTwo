@@ -68,22 +68,32 @@ public class International extends NonResident {
     @return Returns international student information.
     @author Harpreet Randhawa
     */
-    // @Override
-//  public String toString() {
-//  	//toString finished, just need the data from last payments
-//    if(this.getStudyAbroadStatus() == true) {
-//    	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-//      			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + /* last payment amount */ +
-//      			":" + "payment date:" + /* last payment date */ + ":" + "non-resident" + ":" + 
-//      			"international" + ":" + "study abroad";
-//    }
-//    else if(this.getStudyAbroadStatus() == false) {
-//    	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-//      			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + /* last payment amount */ +
-//      			":" + "payment date:" + /* last payment date */ + ":" + "non-resident" + ":" + 
-//      			"international";
-//    }
-//
-//  }
-//
+    @Override
+	public String toString() {
+	    if((this.getStudyAbroadStatus() == true) && (this.getLastPaymentDate() != null)) {
+	    	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
+	      			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
+	      			":" + "payment date:" + this.getLastPaymentDate() + ":" + "non-resident" + ":" + 
+	      			"international" + ":" + "study abroad";
+	    }
+	    else if((this.getStudyAbroadStatus() == false) && (this.getLastPaymentDate() != null)) {
+	    	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
+	      			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
+	      			":" + "payment date:" + this.getLastPaymentDate() + ":" + "non-resident" + ":" + 
+	      			"international";
+	    }
+	    else if((this.getStudyAbroadStatus() == true) && (this.getLastPaymentDate() == null)) {
+	    	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
+	      			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
+	      			":" + "payment date:" + " --/--/--" + ":" + "non-resident" + ":" + 
+	      			"study abroad";
+	    }
+	    else if((this.getStudyAbroadStatus() == false) && (this.getLastPaymentDate() == null)) {
+	    	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
+	      			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
+	      			":" + "payment date:" + " --/--/--" + ":" + "non-resident" + ":" + 
+	      			"international";
+	    }
+	return "";
+	  }
 }

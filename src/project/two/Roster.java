@@ -11,7 +11,7 @@ public class Roster {
     private static final int NOT_FOUND = -1;
     
     public Roster() {
-        this.setRoster(new Student[4]);
+        this.roster = new Student[4];
         this.size = 0;
     }
     
@@ -25,27 +25,6 @@ public class Roster {
         return size;
     }
     
-    /**
-    Getter for roster.
-
-    @return roster Student roster
-    @author Harpreet Randhawa
-    */
-	public Student[] getRoster() {
-		return roster;
-	}
-	
-    /**
-    Setter for roster.
-
-	@param roster Student roster
-    @return this.roster
-    @author Harpreet Randhawa
-    */
-	public void setRoster(Student[] roster) {
-		this.roster = roster;
-	}
-
     /**
     Iterates through roster to find the given student's index.
     If index is not found, returns -1.
@@ -173,20 +152,46 @@ public class Roster {
     public Student replaceStudyAbroad(Student student){
         int i = find(student);
         if(i != -1){
-            if(getRoster()[i] instanceof International) {
-                return getRoster()[i];
+            if(roster[i] instanceof International) {
+                return roster[i];
             }
         }
         return null;
     }
+    
     /**
-     * Displays the album list without any specific order
-     *
-     * @author Harpreet Randhawa
-     */
+    * Displays the roster without any specific order.
+    
+    * @author Harpreet Randhawa
+    */
     public void print() {
+    	System.out.println("* list of students in the roster **");
         for (int i = 0; i < size; i++) {
             System.out.println(roster[i]);
         }
+        System.out.println("* end of roster **");
+    }
+    
+    /**
+    * Displays the roster sorted by student names.
+    
+    * @author Harpreet Randhawa
+    */
+    public void printByName() {
+    	System.out.println("* list of students ordered by name **");
+        Student[] temp = new Student[1];
+        for (int i = 0; i < this.size; i++) {
+            for (int j = i + 1; j < this.size; j++) {
+                if (roster[i].getName().compareTo(roster[j].getName()) > 0) {
+                    temp[0] = roster[i];
+                    roster[i] = roster[j];
+                    roster[j] = temp[0];
+                }
+            }
+        }
+        for (int k = 0; k < this.size; k++) {
+            System.out.println(roster[k]);
+        }
+        System.out.println("* end of roster **");
     }
 }

@@ -26,19 +26,66 @@ public class Student {
     public void tuitionDue() {
 
     }
+    
+    /**
+    Getter for student's last payment.
 
+    @return The last payment.
+    @author Harpreet Randhawa
+    */
+    public double getLastPayment() {
+    	return this.lastPayment;
+    }
+    
+    /**
+    Getter for student's last payment date.
+
+    @return The last payment date.
+    @author Harpreet Randhawa
+    */
+    public Date getLastPaymentDate() {
+    	return this.lastPaymentDate;
+    }
+
+    /**
+    Getter for student's tuition due.
+
+    @return The tuition due.
+    @author Harpreet Randhawa
+    */
     public double getTuitionDue(){
         return this.tuitionDue;
     }
     
+    /**
+    Setter for student's tuition due.
+
+	@param tuitionDue Student's tuition due.
+    @return The tuition due.
+    @author Mikita Belausau
+    */
     public void setTuitionDue(double tuitionDue){
         this.tuitionDue = tuitionDue;
     }
 
+    /**
+    Setter for student's last payment date.
+
+	@param lastPaymentDate Student's last payment date.
+    @return The last payment date.
+    @author Mikita Belausau
+    */
     public void setLastPaymentDate(Date lastPaymentDate){
         this.lastPaymentDate = lastPaymentDate;
     }
 
+    /**
+    Setter for student's last payment amount
+
+	@param payment Student's payment.
+    @return The student's last payment amount.
+    @author Mikita Belausau
+    */
     public void setLastPayment(double payment){
         this.lastPayment = payment;
     }
@@ -46,7 +93,7 @@ public class Student {
     /**
     * Get the student's name.
     
-    * @return name
+    * @return The student's name.
     * @author Harpreet Randhawa
     */
 	public String getName() {
@@ -112,10 +159,19 @@ public class Student {
     * @return Returns student information
     * @author Harpreet Randhawa
     */
-    // @Override
+    @Override
     public String toString() {
-        return "I finished toString for the other student classes. Not sure what to put here for toString for Student class";
-    }
+    	if(this.getLastPaymentDate() == null) {
+        	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
+        			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
+        			":" + "payment date:" + " --/--/--";   	
+    	}
+    	else {
+        	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
+        			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
+        			":" + "payment date:" + this.getLastPaymentDate();  
+    	}
+    	}
 
     @Override
     public boolean equals(Object obj) {

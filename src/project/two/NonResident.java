@@ -30,17 +30,22 @@ public class NonResident extends Student {
 
 
     /**
-     * Creates a textual representation of a non-resident in proper format
-     *
-     * @return Returns non-resident information
-     * @author Harpreet Randhawa
-     */
-    // @Override
-//    public String toString() {
-//    	//toString finished, just need the data from last payments
-//        
-//    	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-//    			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + /* last payment amount */ +
-//    			":" + "payment date:" + /* last payment date */ + ":" + "non-resident";
-//    }
+    * Creates a textual representation of a non-resident in proper format
+    *
+    * @return Returns non-resident information
+    * @author Harpreet Randhawa
+    */
+    @Override
+    public String toString() {    
+    	if(this.getLastPaymentDate() == null) {
+        	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
+        			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
+        			":" + "payment date:" + " --/--/--" + ":" + "non-resident";
+        	}
+    	else {
+        	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
+        			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
+        			":" + "payment date:" + this.getLastPaymentDate() + ":" + "non-resident";
+    	}
+    }
 }

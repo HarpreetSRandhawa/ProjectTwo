@@ -75,38 +75,43 @@ public class TuitionManager {
             if (international.getTotalCreditHours() < 12) {
                 System.out.println("Parttime student doesn't qualify for the award.");
             } else {
-                System.out.println("BEFORE: " + international.getTuitionDue());
-                System.out.println("BEFORE: " + international.getStudyAbroadStatus());
                 international.setStudyAbroadStatus(true);
                 international.setTotalCreditHours(12);
                 international.setTuitionDue(0);
                 international.tuitionDue();
-                System.out.println("AFTER: " + international.getTuitionDue());
-                System.out.println("AFTER: " + international.getStudyAbroadStatus());
-                //Clear the payment date?
+                international.setLastPaymentDate(null);
                 System.out.println("Tuition updated.");
             }
         }
     }
-
+    
+    /**
+    * Checks to see if the given input for AR is correct and outputs the desired prints.
+     
+    * @param line    The input line
+    * @param roster1 The roster of students
+    * @param parse   The given input string
+    * @return The desired print output.
+    * @author Mikita Belausau
+    */
     private void performCommandFourInputsAR(String line, Roster roster1, String[] parse) {
         Resident resident = new Resident(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]));
         if (roster1.add(resident)) {
             System.out.println("Student added.");
         } else {
-            System.out.println("Student is already in the roster");
+            System.out.println("Student is already in the roster.");
         }
     }
 
     /**
-     * Checks to see if the given input for AT is correct and outputs the desired prints
-     *
-     * @param line    The input line
-     * @param roster1 The roster of students
-     * @param parse   The given input string
-     * @return The desired print output
-     * @author Harpreet Randhawa
-     */
+    * Checks to see if the given input for AT is correct and outputs the desired prints.
+    
+    * @param line    The input line
+    * @param roster1 The roster of students
+    * @param parse   The given input string
+    * @return The desired print output.
+    * @author Harpreet Randhawa
+    */
     private void performCommandFourInputAT(String line, Roster roster1, String[] parse) {
         final int PROPER_LENGTH = 5;
 
@@ -122,16 +127,25 @@ public class TuitionManager {
         if ((roster1.add(triState))) {
             System.out.println("Student added.");
         } else {
-            System.out.println("Student is already in the roster");
+            System.out.println("Student is already in the roster.");
         }
     }
-
+    
+    /**
+    * Checks to see if the given input for AN is correct and outputs the desired prints.
+     
+    * @param line    The input line
+    * @param roster1 The roster of students
+    * @param parse   The given input string
+    * @return The desired print output.
+    * @author Mikita Belausau
+    */
     private void performCommandFourInputAN(String line, Roster roster1, String[] parse) {
         NonResident nonResident = new NonResident(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]));
         if (roster1.add(nonResident)) {
             System.out.println("Student added.");
         } else {
-            System.out.println("Student is already in the roster");
+            System.out.println("Student is already in the roster.");
         }
     }
 
@@ -276,6 +290,10 @@ public class TuitionManager {
             cInput();
         } else if (parse[0].equals("T")) {
             paymentInput(roster1, parse);
+        } else if (parse[0].equals("S")) {
+        	performCommandFourInputS(line, roster1, parse);
+        } else if (parse[0].equals("PN")) {
+            roster1.printByName();
         }
 
     }
