@@ -94,6 +94,6 @@ public class International extends NonResident {
 	      			":" + "payment date:" + " --/--/--" + ":" + "non-resident" + ":" + 
 	      			"international";
 	    }
-	return "";
+	return "international";
 	  }
 }

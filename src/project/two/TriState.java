@@ -34,32 +34,34 @@ public class TriState extends NonResident {
     @author Harpreet Randhawa
     */
     @Override
-    public void tuitionDue() {
+    public void tuitionDue() {        
         if(this.triState == null){
             ;
         }
-//        else if ((this.getTotalCreditHours() < 12) && (this.triState.equals(NY))) {
-//            this.setTuitionDue((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME));
-//        }
-//        else if ((this.getTotalCreditHours() < 12) && (this.triState.equals(CT))) {
-//            this.setTuitionDue((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME));
-//        }
-        else if (((this.getTotalCreditHours() >= 12)) && (this.getTotalCreditHours() <= 24) && (this.triState.equals(NY))) {
-            this.setTuitionDue((TRI_STATE_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME) - NYC_DISCOUNT);
+        else if ((this.getTotalCreditHours() < 12) && (this.triState.equals("NY"))) {
+            this.setTuitionDue((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME));
         }
-        else if (((this.getTotalCreditHours() >= 12)) && (this.getTotalCreditHours() <= 24) && (this.triState.equals(CT))) {
-            this.setTuitionDue((TRI_STATE_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME) - CT_DISCOUNT);
+        else if ((this.getTotalCreditHours() < 12) && (this.triState.equals("CT"))) {
+            this.setTuitionDue((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME));
+        }
+        else if (((!(this.getTotalCreditHours() > 16))) && (this.triState.equals("NY"))) {
+            this.setTuitionDue(((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_FULL_TIME) - NYC_DISCOUNT));
+        }
+        else if (((!(this.getTotalCreditHours() > 16))) && (this.triState.equals("CT"))) {
+            this.setTuitionDue(((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_FULL_TIME) - CT_DISCOUNT));
         }
         else {
-        	if ((this.triState.equals(NY)) && (this.getTotalCreditHours() < 12) && (this.getTotalCreditHours() >= 3)) {
-        		this.setTuitionDue((TRI_STATE_TUITION_PART_TIME * this.getTotalCreditHours()) + (UNIVERSITY_FEE_PART_TIME));
+        	if (this.triState.equals("NY")) {
+                this.setTuitionDue(( ((TRI_STATE_TUITION_PART_TIME + ((this.getTotalCreditHours() - 16) * 404))
+                        + UNIVERSITY_FEE_FULL_TIME) - NYC_DISCOUNT));
         	}
-        	else if (this.triState.equals(CT) && (this.getTotalCreditHours() < 12) && (this.getTotalCreditHours() >= 3)) {
-        		this.setTuitionDue((TRI_STATE_TUITION_PART_TIME * this.getTotalCreditHours()) + (UNIVERSITY_FEE_PART_TIME));
+        	else if (this.triState.equals("CT")) {
+                this.setTuitionDue((((TRI_STATE_TUITION_PART_TIME + ((this.getTotalCreditHours() - 16) * 404))
+                        + UNIVERSITY_FEE_FULL_TIME) - CT_DISCOUNT));
         	}
         }
-
     }
+
 
     
     /**
