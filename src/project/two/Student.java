@@ -11,6 +11,8 @@ public class Student {
     public static final double UNIVERSITY_FEE_PART_TIME = 0.80 * UNIVERSITY_FEE_FULL_TIME;
     private double tuitionDue;
     private Profile profile;
+    private Date lastPaymentDate = null;
+    private double lastPayment = 0.00;
 
     public Student(String name, Major major, int TOTAL_CREDIT_HOURS) {
         this.setName(name);
@@ -31,6 +33,14 @@ public class Student {
     
     public void setTuitionDue(double tuitionDue){
         this.tuitionDue = tuitionDue;
+    }
+
+    public void setLastPaymentDate(Date lastPaymentDate){
+        this.lastPaymentDate = lastPaymentDate;
+    }
+
+    public void setLastPayment(double payment){
+        this.lastPayment = payment;
     }
     
     /**

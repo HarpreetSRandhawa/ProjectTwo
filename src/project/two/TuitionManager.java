@@ -48,7 +48,7 @@ public class TuitionManager {
             } else if (resident.getTotalCreditHours() < 12) {
                 System.out.println("Parttime student doesn't qualify for the award.");
             } else {
-                resident.setResidentFinancialAid(Integer.valueOf(parse[3]));
+                resident.setResidentFinancialAid(Double.valueOf(parse[3]));
                 resident.setFinancialAidRecieved(true);
                 System.out.println("Tuition updated.");
             }
@@ -58,14 +58,14 @@ public class TuitionManager {
     }
 
     /**
-    * Updates the abroad status, total credit hours, tuition due, and payment dates for International students.
-    
-    * @param line The input line
-    * @param roster1 The roster of students
-    * @param parse The given input string
-    * @return The desired print output 
-    * @author Harpreet Randhawa
-    */
+     * Updates the abroad status, total credit hours, tuition due, and payment dates for International students.
+     *
+     * @param line    The input line
+     * @param roster1 The roster of students
+     * @param parse   The given input string
+     * @return The desired print output
+     * @author Harpreet Randhawa
+     */
     private void performCommandFourInputS(String line, Roster roster1, String[] parse) {
         Student student = new Student(parse[1], inputToMajor(parse), 5);
         if (roster1.studentInRoster(student) == null) {
@@ -74,8 +74,7 @@ public class TuitionManager {
             International international = (International) roster1.replaceStudyAbroad(student);
             if (international.getTotalCreditHours() < 12) {
                 System.out.println("Parttime student doesn't qualify for the award.");
-            } 
-            else {
+            } else {
                 System.out.println("BEFORE: " + international.getTuitionDue());
                 System.out.println("BEFORE: " + international.getStudyAbroadStatus());
                 international.setStudyAbroadStatus(true);
@@ -98,32 +97,31 @@ public class TuitionManager {
             System.out.println("Student is already in the roster");
         }
     }
-    
+
     /**
-    * Checks to see if the given input for AT is correct and outputs the desired prints
-    
-    * @param line The input line
-    * @param roster1 The roster of students
-    * @param parse The given input string
-    * @return The desired print output 
-    * @author Harpreet Randhawa
-    */
+     * Checks to see if the given input for AT is correct and outputs the desired prints
+     *
+     * @param line    The input line
+     * @param roster1 The roster of students
+     * @param parse   The given input string
+     * @return The desired print output
+     * @author Harpreet Randhawa
+     */
     private void performCommandFourInputAT(String line, Roster roster1, String[] parse) {
         final int PROPER_LENGTH = 5;
-        
-    	if(parse.length != PROPER_LENGTH) {
-    		System.out.println("Missing data in command line.");
-    		return;
-    	}
-    	if(((parse[4].equals("NN")) == true)) {
-    		System.out.println("Not part of the tri-state area.");
-    		return;
-    	}
+
+        if (parse.length != PROPER_LENGTH) {
+            System.out.println("Missing data in command line.");
+            return;
+        }
+        if (!((parse[4].equalsIgnoreCase("NY")) || parse[4].equalsIgnoreCase("CT"))) {
+            System.out.println("Not part of the tri-state area.");
+            return;
+        }
         TriState triState = new TriState(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]), parse[4].toUpperCase());
         if ((roster1.add(triState))) {
             System.out.println("Student added.");
-        } 
-        else {
+        } else {
             System.out.println("Student is already in the roster");
         }
     }
@@ -136,24 +134,23 @@ public class TuitionManager {
             System.out.println("Student is already in the roster");
         }
     }
-    
+
     /**
-    * Checks to see if the given input for AI is correct and outputs the desired prints
-    
-    * @param line The input line
-    * @param roster1 The roster of students
-    * @param parse The given input string
-    * @return The desired print output 
-    * @author Harpreet Randhawa
-    */
+     * Checks to see if the given input for AI is correct and outputs the desired prints
+     *
+     * @param line    The input line
+     * @param roster1 The roster of students
+     * @param parse   The given input string
+     * @return The desired print output
+     * @author Harpreet Randhawa
+     */
     private void performCommandFourInputAI(String line, Roster roster1, String[] parse) {
         International international = new International(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]), Boolean.valueOf(parse[4]));
         if ((Integer.valueOf(parse[3]) >= 12)) {
-            if(roster1.add(international)){
+            if (roster1.add(international)) {
                 System.out.println("Student added.");
             }
-        }
-        else {
+        } else {
             System.out.println("International students must enroll at least 12 credits.");
         }
     }
@@ -175,7 +172,7 @@ public class TuitionManager {
         return true;
     }
 
-    private boolean performCommandThreeInputDelete(String line, Roster roster1, String[] parse) {
+    private boolean performCommandThreeInputDelete(Roster roster1, String[] parse) {
         Student student = new Student(parse[1], inputToMajor(parse), 5);
         if (roster1.remove(student)) {
             System.out.println("Student removed from the roster.");
@@ -184,34 +181,6 @@ public class TuitionManager {
             System.out.println("Student is not in the roster.");
             return false;
         }
-    }
-    
-    /**
-    * Prints out the roster in no particular order.
-    
-    * @param line The input line
-    * @param roster1 The roster of students
-    * @param parse The given input string
-    * @return The student roster.
-    * @author Harpreet Randhawa
-    */
-    private void performCommandPrint(String line, Roster roster1, String[] parse) {
-    	if(roster1.getSize() == 0) {
-    		System.out.println("Student roster is empty!");
-    	}
-    	else {
-    		for(int i = 0; i < roster1.getSize(); i++) {
-    			System.out.println(roster1.getRoster()[i]);
-    		}
-    	}
-
-    }
-
-    private boolean parseLengthThreeValidCheckRosterDelete(String[] parse) {
-        if (!(parse[0].equals("D"))) {
-            return false;
-        }
-        return true;
     }
 
     private boolean validCheckRosterAdd(String[] parse) {
@@ -240,11 +209,47 @@ public class TuitionManager {
         return true;
     }
 
+    private void cInput() {
+        System.out.println("Calculation completed.");
+    }
+
+    private boolean paymentValidityCheck(Roster roster1, String[] parse) {
+        if (parse.length == 3) {
+            System.out.println("Payment amount missing.");
+            return false;
+        } else if ((Double.valueOf(parse[3]) == 0) || (Double.valueOf(parse[3]) < 0)) {
+            System.out.println("Invalid amount.");
+            return false;
+        }
+        Date paymentDate = new Date(parse[4]);
+        Student student = new Student(parse[1], inputToMajor(parse), 5);
+        double tuitionDues = roster1.studentInRoster(student).getTuitionDue();
+        if (tuitionDues < Double.valueOf(parse[3])) {
+            System.out.println("Amount is greater than amount due.");
+            return false;
+        } else if (!(paymentDate.isValid(paymentDate))) {
+            System.out.println("Payment date invalid.");
+            return false;
+        }
+        return true;
+    }
+
+    private void paymentInput(Roster roster1, String[] parse) {
+        Date paymentDate = new Date(parse[4]);
+        Student student = new Student(parse[1], inputToMajor(parse), 5);
+        Double tuitionDues = roster1.studentInRoster(student).getTuitionDue();
+        tuitionDues -= Double.valueOf(parse[3]);
+        roster1.studentInRoster(student).setTuitionDue(tuitionDues);
+        roster1.studentInRoster(student).setLastPaymentDate(paymentDate);
+        roster1.studentInRoster(student).setLastPayment(Double.valueOf(parse[3]));
+        System.out.println("Payment applied.");
+    }
+
     private boolean validityCheckF(String[] parse) {
         if (parse.length == 3) {
             System.out.println("Missing the amount.");
             return false;
-        } else if (((parse[0].equals("F")) && (!((((Integer.valueOf(parse[3])) < 10000)) || (Integer.valueOf(parse[3]) > 0))))) {
+        } else if (((parse[0].equals("F")) && (((((Double.valueOf(parse[3])) > 10000)) || (Double.valueOf(parse[3]) < 0))))) {
             System.out.println("Invalid amount.");
             return false;
         }
@@ -264,19 +269,27 @@ public class TuitionManager {
         } else if ((parse[0].equals("F"))) {
             performCommandFourInputF(line, roster1, parse);
         } else if ((parse[0].equals("P"))) {
-        	performCommandPrint(line, roster1, parse);
-        }
-        
+            roster1.print();
+        } else if ((parse[0].equals("R"))) {
+            performCommandThreeInputDelete(roster1, parse);
+        } else if (parse[0].equals("C")) {
+            cInput();
+        } else if (parse[0].equals("T")) {
+            paymentInput(roster1, parse);
         }
 
-    private boolean isValidInput(String line) {
+    }
+
+    private boolean isValidInput(Roster roster1, String line) {
         String[] parse = line.split(",");
         if ((parse[0].equals("F"))) {
-            validityCheckF(parse);
+            return validityCheckF(parse);
         } else if (parse[0].equals("AR") || parse[0].equals("AN") || parse[0].equals("AI") || parse[0].equals("AT")) {
             return validCheckRosterAdd(parse);
         } else if (parse.length == 1) {
             return validityCheckOne(parse);
+        } else if (parse[0].equals("T")) {
+            return paymentValidityCheck(roster1, parse);
         }
         return true;
     }
@@ -292,7 +305,7 @@ public class TuitionManager {
         Scanner scanner = new Scanner(System.in);
         while (!(scanner.equals("Q"))) {
             String line = scanner.nextLine();
-            if (isValidInput(line)) {
+            if (isValidInput(rosters1, line)) {
                 performCommands(line, rosters1);
             } else if ((line.equals("\n")) || (line.equals(""))) {
                 ;

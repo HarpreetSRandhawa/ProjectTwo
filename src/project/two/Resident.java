@@ -17,21 +17,18 @@ public class Resident extends Student {
     @Override
     public void tuitionDue() {
         if (this.getTotalCreditHours() < 12) {
-            this.setTuitionDue(RESIDENT_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME);
+            this.setTuitionDue((RESIDENT_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME));
         } else if ((!(this.getTotalCreditHours() > 16))) {
-            this.setTuitionDue(RESIDENT_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME);
+            this.setTuitionDue((RESIDENT_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME));
         } else {
-            this.setTuitionDue(RESIDENT_TUITION_FULL_TIME + ((this.getTotalCreditHours() - 16) * 404)
-                    + UNIVERSITY_FEE_FULL_TIME);
+            this.setTuitionDue((RESIDENT_TUITION_FULL_TIME + ((this.getTotalCreditHours() - 16) * 404)
+                    + UNIVERSITY_FEE_FULL_TIME));
         }
     }
 
-    public void tuitionPayment(int payment) {
-        this.setTuitionDue(this.getTuitionDue() - payment);
-    }
 
-    public void setResidentFinancialAid(int financialAid) {
-            this.setTuitionDue(this.getTuitionDue() - financialAid);
+    public void setResidentFinancialAid(double financialAid) {
+            this.setTuitionDue((this.getTuitionDue() - financialAid));
     }
 
     public void setFinancialAidRecieved(boolean financialAid){

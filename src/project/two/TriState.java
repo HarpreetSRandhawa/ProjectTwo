@@ -17,14 +17,13 @@ public class TriState extends NonResident {
     * @param name
     * @param major
     * @param TOTAL_CREDIT_HOURS
-    * @param studyAbroad
     * @return the tuition due for a Tri-state student
     * @author Mikita Belausau
     */
     public TriState(String name, Major major, int TOTAL_CREDIT_HOURS, String triState){
         super(name, major, TOTAL_CREDIT_HOURS);
         this.triState = triState;
-      //  this.tuitionDue();
+        this.tuitionDue();
     }
 
     /**
@@ -35,26 +34,29 @@ public class TriState extends NonResident {
     */
     @Override
     public void tuitionDue() {
-        if ((this.getTotalCreditHours() < 12) && (this.triState == NY)) {
-            this.setTuitionDue(TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME - 4000);
+        if(this.triState == null){
+            ;
         }
-        else if ((this.getTotalCreditHours() < 12) && (this.triState == CT)) {
-            this.setTuitionDue(TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME - 5000);
+        else if ((this.getTotalCreditHours() < 12) && (this.triState.equals("NY"))) {
+            this.setTuitionDue((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME) - NYC_DISCOUNT);
         }
-        else if (((!(this.getTotalCreditHours() > 16))) && (this.triState == NY)) {
-            this.setTuitionDue(TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_FULL_TIME - 4000);
+        else if ((this.getTotalCreditHours() < 12) && (this.triState.equals("CT"))) {
+            this.setTuitionDue((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME - CT_DISCOUNT));
         }
-        else if (((!(this.getTotalCreditHours() > 16))) && (this.triState == CT)) {
-            this.setTuitionDue(TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_FULL_TIME - 5000);
+        else if (((!(this.getTotalCreditHours() > 16))) && (this.triState.equals("NY"))) {
+            this.setTuitionDue((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_FULL_TIME - NYC_DISCOUNT));
+        }
+        else if (((!(this.getTotalCreditHours() > 16))) && (this.triState.equals("CT"))) {
+            this.setTuitionDue((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_FULL_TIME - CT_DISCOUNT));
         }
         else {
-        	if (this.triState == NY) {
-                this.setTuitionDue(TRI_STATE_TUITION_PART_TIME + ((this.getTotalCreditHours() - 16) * 404)
-                        + UNIVERSITY_FEE_FULL_TIME - 4000);
+        	if (this.triState.equals("NY")) {
+                this.setTuitionDue((TRI_STATE_TUITION_PART_TIME + ((this.getTotalCreditHours() - 16) * 404)
+                        + UNIVERSITY_FEE_FULL_TIME - NYC_DISCOUNT));
         	}
-        	else if (this.triState == CT) {
-                this.setTuitionDue(TRI_STATE_TUITION_PART_TIME + ((this.getTotalCreditHours() - 16) * 404)
-                        + UNIVERSITY_FEE_FULL_TIME - 5000);
+        	else if (this.triState.equals("CT")) {
+                this.setTuitionDue((TRI_STATE_TUITION_PART_TIME + ((this.getTotalCreditHours() - 16) * 404)
+                        + UNIVERSITY_FEE_FULL_TIME - CT_DISCOUNT));
         	}
         }
     }

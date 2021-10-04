@@ -56,7 +56,7 @@ public class Roster {
     */
     private int find(Student student) {
         for (int i = 0; i < size; i++) {
-            if (getRoster()[i].equals(student)) {
+            if (roster[i].equals(student)) {
                 return i;
             }
         }
@@ -70,11 +70,11 @@ public class Roster {
     */
     private void grow() {
         Roster increasedRoster = new Roster();
-        increasedRoster.setRoster(new Student[this.getRoster().length + GROWTH_FACTOR]);
+        increasedRoster.roster = new Student[this.roster.length + GROWTH_FACTOR];
         for (int i = 0; i < size; i++) {
-            increasedRoster.getRoster()[i] = this.getRoster()[i];
+            increasedRoster.roster[i] = this.roster[i];
         }
-        this.setRoster(increasedRoster.getRoster());
+        this.roster = increasedRoster.roster;
     }
 
     /**
@@ -92,8 +92,8 @@ public class Roster {
             this.grow();
         }
         for (int i = 0; i <= size; i++) {
-            if (getRoster()[i] == null) {
-                getRoster()[i] = student;
+            if (roster[i] == null) {
+                roster[i] = student;
                 size++;
                 return true;
             }
@@ -106,19 +106,22 @@ public class Roster {
 
     @return True if the student was removed successfully and false otherwise.
     @param student The given student to be removed.
-    @author Harpreet Randhawa
+    @author Harpreet Randhawa, Mikita Belausau
     */
     public boolean remove(Student student) {
-        if (find(student) != NOT_FOUND) {
+        if (find(student) == NOT_FOUND) {
             return false;
+        }
+        if ((this.size % GROWTH_FACTOR == 0) && (size != 0)) {
+            this.grow();
         }
         boolean found = false;
         for (int i = 0; i < size; i++) {
             if (found == true) {
-                getRoster()[i] = getRoster()[i + 1];
-            } else if (getRoster()[i].equals(student)) {
+                roster[i] = roster[i+1];
+            } else if (roster[i].equals(student)) {
                 found = true;
-                getRoster()[i] = getRoster()[i + 1];
+                roster[i] = roster[i+1];
             }
         }
         if (found) {
@@ -140,7 +143,7 @@ public class Roster {
         if(i == NOT_FOUND){
             return null;
         }
-        return getRoster()[i];
+        return roster[i];
     }
 
     /**
@@ -153,8 +156,8 @@ public class Roster {
     public Student replaceFinancialAid(Student student){
         int i = find(student);
         if(i != -1){
-            if(getRoster()[i] instanceof Resident) {
-                return getRoster()[i];
+            if(roster[i] instanceof Resident) {
+                return roster[i];
             }
         }
         return null;
@@ -176,5 +179,14 @@ public class Roster {
         }
         return null;
     }
-
+    /**
+     * Displays the album list without any specific order
+     *
+     * @author Harpreet Randhawa
+     */
+    public void print() {
+        for (int i = 0; i < size; i++) {
+            System.out.println(roster[i]);
+        }
+    }
 }

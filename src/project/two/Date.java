@@ -19,8 +19,7 @@ public class Date implements Comparable<Date> {
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
-    // (Comment for Nikita): I changed THE_EIGHTYS to 2021 since for project two they don't want any dates before 2021. Not sure if it's necessary to change the variable name.
-    public static final int THE_EIGHTYS = 2021;
+    public static final int THE_TWENTY_TWENTY_ONE = 2021;
     public static final int JANUARY = 1;
     public static final int FEBRUARY = 2;
     public static final int MARCH = 3;
@@ -168,7 +167,7 @@ public class Date implements Comparable<Date> {
         } else if ((date.year == today.year) && (date.month == today.month) && (date.day > today.day)) {
             return false;
         }
-        if (date.year < THE_EIGHTYS) {
+        if (date.year < THE_TWENTY_TWENTY_ONE) {
             return false;
         }
         if (date.year % QUADRENNIAL == 0 && date.year % CENTENNIAL != 0) {

@@ -54,11 +54,11 @@ public class International extends NonResident {
     */
     @Override
     public void tuitionDue() {
-        if ((this.getTotalCreditHours() >= 12) && (this.studyAbroad == false)) {
-            this.setTuitionDue(INTERNATIONAL_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME + INTERNATIONAL_ADDITIONAL_FEE);
+        if ((this.getTotalCreditHours() >= 12) && (this.getStudyAbroadStatus() == false)) {
+            this.setTuitionDue((INTERNATIONAL_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME + INTERNATIONAL_ADDITIONAL_FEE));
         }
-        else if ((this.getTotalCreditHours() >= 12) && (this.studyAbroad == true)) {
-            this.setTuitionDue(UNIVERSITY_FEE_FULL_TIME + INTERNATIONAL_ADDITIONAL_FEE);
+        else if ((this.getTotalCreditHours() >= 12) && (this.getStudyAbroadStatus() == true)) {
+            this.setTuitionDue((UNIVERSITY_FEE_FULL_TIME + INTERNATIONAL_ADDITIONAL_FEE));
         }
     }
     
