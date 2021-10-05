@@ -13,20 +13,28 @@ public class Student {
     private Profile profile;
     private Date lastPaymentDate = null;
     private double lastPayment = 0.00;
+    private boolean wasCalculated = false;
 
     public Student(String name, Major major, int TOTAL_CREDIT_HOURS) {
         this.setName(name);
         this.setMajor(major);
         this.TOTAL_CREDIT_HOURS = TOTAL_CREDIT_HOURS;
         this.profile = new Profile(this.getName(), this.getMajor());
-        this.tuitionDue();
     }
 
 
     public void tuitionDue() {
 
     }
-    
+
+    public boolean wasCalculated(){
+        return this.wasCalculated;
+    }
+
+    public void setWasCalculated(boolean wasCalculated){
+        this.wasCalculated = wasCalculated;
+    }
+
     /**
     Getter for student's last payment.
 
@@ -87,7 +95,7 @@ public class Student {
     @author Mikita Belausau
     */
     public void setLastPayment(double payment){
-        this.lastPayment = payment;
+        this.lastPayment += payment;
     }
     
     /**
@@ -169,7 +177,7 @@ public class Student {
     	else {
         	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
         			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-        			":" + "payment date:" + this.getLastPaymentDate();  
+        			":" + "payment date:" + this.getLastPaymentDate();
     	}
     	}
 

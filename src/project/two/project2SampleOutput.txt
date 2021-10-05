@@ -100,7 +100,6 @@ Rob Harrison:BA:9 credit hours:tuition due:11,308.40:last payment:0.00:payment d
 Rob Harrison:ME:6 credit hours:tuition due:8,410.40:last payment:0.00:payment date: --/--/--:non-resident(tri-state):CT
 Mary Johnson:BA:15 credit hours:tuition due:28,005.00:last payment:0.00:payment date: --/--/--:non-resident(tri-state):CT
 Barry Young:EE:14 credit hours:tuition due:29,005.00:last payment:0.00:payment date: --/--/--:non-resident(tri-state):NY
-Joshua Patel:CS:12 credit hours:tuition due:5,918.00:last payment:0.00:payment date: --/--/--:non-resident:international:study abroad
 Sunny Lin:CS:12 credit hours:tuition due:35,655.00:last payment:0.00:payment date: --/--/--:non-resident:international
 Joshua Patel:ME:20 credit hours:tuition due:39,519.00:last payment:0.00:payment date: --/--/--:non-resident:international
 Sunny Lin:BA:16 credit hours:tuition due:35,655.00:last payment:0.00:payment date: --/--/--:non-resident:international

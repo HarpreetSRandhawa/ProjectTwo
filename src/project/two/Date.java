@@ -204,6 +204,11 @@ public class Date implements Comparable<Date> {
         }
     }
 
+    @Override
+    public String toString() {
+        return this.getMonth()+"/"+this.getDay()+"/"+this.getYear();
+    }
+
     /**
     Testbed main for the date class.
     

@@ -5,7 +5,6 @@ package project.two;
 
 public class International extends NonResident {
     private static final int INTERNATIONAL_TUITION_FULL_TIME = 29737;
-	private static final int ADDITIONAL_FEE_FULL_TIME = 2650;
 	private static final int INTERNATIONAL_ADDITIONAL_FEE = 2650;
     private boolean studyAbroad;
     
@@ -22,7 +21,6 @@ public class International extends NonResident {
     public International(String name, Major major, int TOTAL_CREDIT_HOURS, boolean studyAbroad){
         super(name, major, TOTAL_CREDIT_HOURS);
         this.studyAbroad = studyAbroad;
-        tuitionDue();
     }
     
     /**
@@ -54,11 +52,18 @@ public class International extends NonResident {
     */
     @Override
     public void tuitionDue() {
-        if ((this.getTotalCreditHours() >= 12) && (this.getStudyAbroadStatus() == false)) {
+        if ((this.getTotalCreditHours() >= 12) && (this.getTotalCreditHours() <= 16) && (this.getStudyAbroadStatus() == false)) {
             this.setTuitionDue((INTERNATIONAL_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME + INTERNATIONAL_ADDITIONAL_FEE));
+			this.setWasCalculated(true);
         }
+		else if ((this.getTotalCreditHours() >= 12) && (this.getTotalCreditHours() > 16) && (this.getStudyAbroadStatus() == false)) {
+			this.setTuitionDue((INTERNATIONAL_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME + INTERNATIONAL_ADDITIONAL_FEE
+			+ ((this.getTotalCreditHours() - 16) * 966)));
+			this.setWasCalculated(true);
+		}
         else if ((this.getTotalCreditHours() >= 12) && (this.getStudyAbroadStatus() == true)) {
             this.setTuitionDue((UNIVERSITY_FEE_FULL_TIME + INTERNATIONAL_ADDITIONAL_FEE));
+			this.setWasCalculated(true);
         }
     }
     
@@ -73,13 +78,13 @@ public class International extends NonResident {
 	    if((this.getStudyAbroadStatus() == true) && (this.getLastPaymentDate() != null)) {
 	    	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
 	      			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-	      			":" + "payment date:" + this.getLastPaymentDate() + ":" + "non-resident" + ":" + 
+	      			":" + "payment date:" + this.getLastPaymentDate() + ":" + "non-resident" + ":" +
 	      			"international" + ":" + "study abroad";
 	    }
 	    else if((this.getStudyAbroadStatus() == false) && (this.getLastPaymentDate() != null)) {
 	    	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
 	      			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-	      			":" + "payment date:" + this.getLastPaymentDate() + ":" + "non-resident" + ":" + 
+	      			":" + "payment date:" + this.getLastPaymentDate() + ":" + "non-resident" + ":" +
 	      			"international";
 	    }
 	    else if((this.getStudyAbroadStatus() == true) && (this.getLastPaymentDate() == null)) {

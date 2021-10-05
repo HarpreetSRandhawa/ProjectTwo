@@ -9,30 +9,30 @@ public class Roster {
 
     private static final int GROWTH_FACTOR = 4;
     private static final int NOT_FOUND = -1;
-    
+
     public Roster() {
         this.roster = new Student[4];
         this.size = 0;
     }
-    
+
     /**
-    Returns the size of the roster.
-	
-    @return size Roster size.
-    @author Harpreet Randhawa
-    */
+     * Returns the size of the roster.
+     *
+     * @return size Roster size.
+     * @author Harpreet Randhawa
+     */
     public int getSize() {
         return size;
     }
-    
-    /**
-    Iterates through roster to find the given student's index.
-    If index is not found, returns -1.
 
-    @return The album's index. Returns NOT_FOUND if index is not found.
-    @param student The given student to be searched.
-    @author Harpreet Randhawa
-    */
+    /**
+     * Iterates through roster to find the given student's index.
+     * If index is not found, returns -1.
+     *
+     * @param student The given student to be searched.
+     * @return The album's index. Returns NOT_FOUND if index is not found.
+     * @author Harpreet Randhawa
+     */
     private int find(Student student) {
         for (int i = 0; i < size; i++) {
             if (roster[i].equals(student)) {
@@ -43,10 +43,10 @@ public class Roster {
     }
 
     /**
-    Automatically grow the array list when it reaches full capacity.
-
-    @author Harpreet Randhawa
-    */
+     * Automatically grow the array list when it reaches full capacity.
+     *
+     * @author Harpreet Randhawa
+     */
     private void grow() {
         Roster increasedRoster = new Roster();
         increasedRoster.roster = new Student[this.roster.length + GROWTH_FACTOR];
@@ -57,12 +57,12 @@ public class Roster {
     }
 
     /**
-    Adds the given student to the array list.
-
-    @return True if the student was added successfully and false otherwise.
-    @param student The given student to be added.
-    @author Harpreet Randhawa
-    */
+     * Adds the given student to the array list.
+     *
+     * @param student The given student to be added.
+     * @return True if the student was added successfully and false otherwise.
+     * @author Harpreet Randhawa
+     */
     public boolean add(Student student) {
         if (find(student) != NOT_FOUND) {
             return false;
@@ -81,12 +81,12 @@ public class Roster {
     }
 
     /**
-    Removes the given student from the array list while maintaining the relative sequence of the objects.
-
-    @return True if the student was removed successfully and false otherwise.
-    @param student The given student to be removed.
-    @author Harpreet Randhawa, Mikita Belausau
-    */
+     * Removes the given student from the array list while maintaining the relative sequence of the objects.
+     *
+     * @param student The given student to be removed.
+     * @return True if the student was removed successfully and false otherwise.
+     * @author Harpreet Randhawa, Mikita Belausau
+     */
     public boolean remove(Student student) {
         if (find(student) == NOT_FOUND) {
             return false;
@@ -97,10 +97,10 @@ public class Roster {
         boolean found = false;
         for (int i = 0; i < size; i++) {
             if (found == true) {
-                roster[i] = roster[i+1];
+                roster[i] = roster[i + 1];
             } else if (roster[i].equals(student)) {
                 found = true;
-                roster[i] = roster[i+1];
+                roster[i] = roster[i + 1];
             }
         }
         if (found) {
@@ -111,87 +111,138 @@ public class Roster {
     }
 
     /**
-    * Check to see if the students in the roster for usage in TuitionManager.
-    
-    * @param student
-    * @return The student or null if the student is not in the roster.
-    * @author Mikita Belausau
-    */
-    public Student studentInRoster(Student student){
+     * Check to see if the students in the roster for usage in TuitionManager.
+     *
+     * @param student
+     * @return The student or null if the student is not in the roster.
+     * @author Mikita Belausau
+     */
+    public Student studentInRoster(Student student) {
         int i = find(student);
-        if(i == NOT_FOUND){
+        if (i == NOT_FOUND) {
             return null;
         }
         return roster[i];
     }
 
     /**
-    * 
-    
-    * @param student
-    * @return The student or null if the student is not in the roster.
-    * @author Mikita Belausau
-    */
-    public Student replaceFinancialAid(Student student){
+     * @param student
+     * @return The student or null if the student is not in the roster.
+     * @author Mikita Belausau
+     */
+    public Student replaceFinancialAid(Student student) {
         int i = find(student);
-        if(i != -1){
-            if(roster[i] instanceof Resident) {
+        if (i != -1) {
+            if (roster[i] instanceof Resident) {
                 return roster[i];
             }
         }
         return null;
     }
-    
+
     /**
-    * Checks if the given student is an international student or not.
-    
-    * @param student
-    * @return The student or null if the student is not in the roster.
-    * @author Harpreet Randhawa
-    */
-    public Student replaceStudyAbroad(Student student){
+     * Checks if the given student is an international student or not.
+     *
+     * @param student
+     * @return The student or null if the student is not in the roster.
+     * @author Harpreet Randhawa
+     */
+    public Student replaceStudyAbroad(Student student) {
         int i = find(student);
-        if(i != -1){
-            if(roster[i] instanceof International) {
+        if (i != -1) {
+            if (roster[i] instanceof International) {
                 return roster[i];
             }
         }
         return null;
     }
-    
+
     /**
-    * Displays the roster without any specific order.
-    
-    * @author Harpreet Randhawa
-    */
+     * Displays the roster without any specific order.
+     *
+     * @author Harpreet Randhawa
+     */
     public void print() {
-    	System.out.println("* list of students in the roster **");
-        for (int i = 0; i < size; i++) {
-            System.out.println(roster[i]);
+        if (size == 0) {
+            System.out.println("Student roster is empty!");
+        } else {
+            System.out.println("* list of students in the roster **");
+            for (int i = 0; i < size; i++) {
+                System.out.println(roster[i]);
+            }
+            System.out.println("* end of roster **");
         }
-        System.out.println("* end of roster **");
     }
-    
+
     /**
-    * Displays the roster sorted by student names.
-    
-    * @author Harpreet Randhawa
-    */
+     * Displays the roster sorted by student names.
+     *
+     * @author Harpreet Randhawa
+     */
     public void printByName() {
-    	System.out.println("* list of students ordered by name **");
-        Student[] temp = new Student[1];
-        for (int i = 0; i < this.size; i++) {
-            for (int j = i + 1; j < this.size; j++) {
-                if (roster[i].getName().compareTo(roster[j].getName()) > 0) {
-                    temp[0] = roster[i];
-                    roster[i] = roster[j];
-                    roster[j] = temp[0];
+        if (size == 0) {
+            System.out.println("Student roster is empty!");
+        } else {
+            System.out.println("* list of students ordered by name **");
+            Student[] temp = new Student[1];
+            for (int i = 0; i < this.size; i++) {
+                for (int j = i + 1; j < this.size; j++) {
+                    if (roster[i].getName().compareTo(roster[j].getName()) > 0) {
+                        temp[0] = roster[i];
+                        roster[i] = roster[j];
+                        roster[j] = temp[0];
+                    }
                 }
             }
+            for (int k = 0; k < this.size; k++) {
+                System.out.println(roster[k]);
+            }
+            System.out.println("* end of roster **");
         }
-        for (int k = 0; k < this.size; k++) {
-            System.out.println(roster[k]);
+    }
+
+    public void printByDate() {
+        if (size == 0) {
+            System.out.println("Student roster is empty!");
+        } else {
+            int tempRosterLength = 0;
+            System.out.println("* list of students made payments ordered by payment date **");
+            for (int q = 0; q < size; q++) {
+                if (roster[q].getLastPaymentDate() != null) {
+                    tempRosterLength++;
+                }
+            }
+            Student[] tempRoster = new Student[tempRosterLength];
+            Student[] temp = new Student[1];
+            for (int i = 0; i < tempRosterLength; i++) {
+                for (int j = 0; j < size; j++) {
+                    if (roster[j].getLastPaymentDate() != null) {
+                        tempRoster[i] = roster[j];
+                        i++;
+                    }
+                }
+            }
+            for (int k = 0; k < tempRosterLength; k++) {
+                for (int l = 0; l < tempRosterLength; l++) {
+                    if ((k != l) && (((tempRoster[k].getLastPaymentDate()).compareTo((tempRoster[l].getLastPaymentDate()))) != 1)) {
+                        temp[0] = tempRoster[k];
+                        tempRoster[k] = tempRoster[l];
+                        tempRoster[l] = temp[0];
+                    }
+                }
+            }
+            for (int p = 0; p < tempRosterLength; p++) {
+                System.out.println(tempRoster[p]);
+            }
+            System.out.println("* end of roster **");
         }
-        System.out.println("* end of roster **");
+    }
+
+    public void calculateTuition() {
+        for (int i = 0; i < size; i++) {
+            if (!(roster[i].wasCalculated())) {
+                roster[i].tuitionDue();
+            }
+        }
     }
 }

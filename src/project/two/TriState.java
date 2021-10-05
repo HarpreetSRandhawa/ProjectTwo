@@ -24,7 +24,6 @@ public class TriState extends NonResident {
     public TriState(String name, Major major, int TOTAL_CREDIT_HOURS, String triState){
         super(name, major, TOTAL_CREDIT_HOURS);
         this.triState = triState;
-        this.tuitionDue();
     }
 
     /**
@@ -39,25 +38,31 @@ public class TriState extends NonResident {
             ;
         }
         else if ((this.getTotalCreditHours() < 12) && (this.triState.equals("NY"))) {
-            this.setTuitionDue((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME));
+            this.setTuitionDue(((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME)));
+            this.setWasCalculated(true);
         }
         else if ((this.getTotalCreditHours() < 12) && (this.triState.equals("CT"))) {
-            this.setTuitionDue((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME));
+            this.setTuitionDue(((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME)));
+            this.setWasCalculated(true);
         }
         else if (((!(this.getTotalCreditHours() > 16))) && (this.triState.equals("NY"))) {
-            this.setTuitionDue(((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_FULL_TIME) - NYC_DISCOUNT));
+            this.setTuitionDue((((TRI_STATE_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME) - NYC_DISCOUNT)));
+            this.setWasCalculated(true);
         }
         else if (((!(this.getTotalCreditHours() > 16))) && (this.triState.equals("CT"))) {
-            this.setTuitionDue(((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_FULL_TIME) - CT_DISCOUNT));
+            this.setTuitionDue((((TRI_STATE_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME) - CT_DISCOUNT)));
+            this.setWasCalculated(true);
         }
         else {
         	if (this.triState.equals("NY")) {
-                this.setTuitionDue(( ((TRI_STATE_TUITION_PART_TIME + ((this.getTotalCreditHours() - 16) * 404))
-                        + UNIVERSITY_FEE_FULL_TIME) - NYC_DISCOUNT));
+                this.setTuitionDue(((((TRI_STATE_TUITION_FULL_TIME + ((this.getTotalCreditHours() - 16) * 966))
+                        + UNIVERSITY_FEE_FULL_TIME) - NYC_DISCOUNT)));
+                this.setWasCalculated(true);
         	}
         	else if (this.triState.equals("CT")) {
-                this.setTuitionDue((((TRI_STATE_TUITION_PART_TIME + ((this.getTotalCreditHours() - 16) * 404))
-                        + UNIVERSITY_FEE_FULL_TIME) - CT_DISCOUNT));
+                this.setTuitionDue(((((TRI_STATE_TUITION_FULL_TIME + ((this.getTotalCreditHours() - 16) * 966))
+                        + UNIVERSITY_FEE_FULL_TIME) - CT_DISCOUNT)));
+                this.setWasCalculated(true);
         	}
         }
     }

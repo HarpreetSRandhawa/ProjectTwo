@@ -9,18 +9,20 @@ public class NonResident extends Student {
 
     public NonResident(String name, Major major, int TOTAL_CREDIT_HOURS) {
         super(name, major, TOTAL_CREDIT_HOURS);
-        this.tuitionDue();
     }
 
     @Override
     public void tuitionDue() {
         if (this.getTotalCreditHours() < 12) {
             this.setTuitionDue((NON_RESIDENT_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME));
+            this.setWasCalculated(true);
         } else if ((!(this.getTotalCreditHours() > 16))) {
             this.setTuitionDue((NON_RESIDENT_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME));
+            this.setWasCalculated(true);
         } else {
-            this.setTuitionDue((NON_RESIDENT_TUITION_FULL_TIME + ((this.getTotalCreditHours() - 16) * 404)
+            this.setTuitionDue((NON_RESIDENT_TUITION_FULL_TIME + ((this.getTotalCreditHours() - 16) * 966)
                     + UNIVERSITY_FEE_FULL_TIME));
+            this.setWasCalculated(true);
         }
     }
 

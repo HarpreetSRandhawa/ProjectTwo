@@ -84,16 +84,16 @@ public class TuitionManager {
             }
         }
     }
-    
+
     /**
-    * Checks to see if the given input for AR is correct and outputs the desired prints.
-     
-    * @param line    The input line
-    * @param roster1 The roster of students
-    * @param parse   The given input string
-    * @return The desired print output.
-    * @author Mikita Belausau
-    */
+     * Checks to see if the given input for AR is correct and outputs the desired prints.
+     *
+     * @param line    The input line
+     * @param roster1 The roster of students
+     * @param parse   The given input string
+     * @return The desired print output.
+     * @author Mikita Belausau
+     */
     private void performCommandFourInputsAR(String line, Roster roster1, String[] parse) {
         Resident resident = new Resident(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]));
         if (roster1.add(resident)) {
@@ -104,14 +104,14 @@ public class TuitionManager {
     }
 
     /**
-    * Checks to see if the given input for AT is correct and outputs the desired prints.
-    
-    * @param line    The input line
-    * @param roster1 The roster of students
-    * @param parse   The given input string
-    * @return The desired print output.
-    * @author Harpreet Randhawa
-    */
+     * Checks to see if the given input for AT is correct and outputs the desired prints.
+     *
+     * @param line    The input line
+     * @param roster1 The roster of students
+     * @param parse   The given input string
+     * @return The desired print output.
+     * @author Harpreet Randhawa
+     */
     private void performCommandFourInputAT(String line, Roster roster1, String[] parse) {
         final int PROPER_LENGTH = 5;
 
@@ -130,16 +130,16 @@ public class TuitionManager {
             System.out.println("Student is already in the roster.");
         }
     }
-    
+
     /**
-    * Checks to see if the given input for AN is correct and outputs the desired prints.
-     
-    * @param line    The input line
-    * @param roster1 The roster of students
-    * @param parse   The given input string
-    * @return The desired print output.
-    * @author Mikita Belausau
-    */
+     * Checks to see if the given input for AN is correct and outputs the desired prints.
+     *
+     * @param line    The input line
+     * @param roster1 The roster of students
+     * @param parse   The given input string
+     * @return The desired print output.
+     * @author Mikita Belausau
+     */
     private void performCommandFourInputAN(String line, Roster roster1, String[] parse) {
         NonResident nonResident = new NonResident(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]));
         if (roster1.add(nonResident)) {
@@ -216,14 +216,16 @@ public class TuitionManager {
     }
 
     private boolean validityCheckOne(String[] parse) {
-        if (!(parse[0].equals("C") || parse[0].equals("P") || parse[0].equals("PN") || parse[0].equals("PT"))) {
+        if (!(parse[0].equals("C") || parse[0].equals("P") || parse[0].equals("PN") || parse[0].equals("PT")
+                || parse[0].equals("Q"))) {
             System.out.println("Command '" + parse[0] + "' not supported!");
             return false;
         }
         return true;
     }
 
-    private void cInput() {
+    private void cInput(Roster roster1) {
+        roster1.calculateTuition();
         System.out.println("Calculation completed.");
     }
 
@@ -287,13 +289,18 @@ public class TuitionManager {
         } else if ((parse[0].equals("R"))) {
             performCommandThreeInputDelete(roster1, parse);
         } else if (parse[0].equals("C")) {
-            cInput();
+            cInput(roster1);
         } else if (parse[0].equals("T")) {
             paymentInput(roster1, parse);
         } else if (parse[0].equals("S")) {
-        	performCommandFourInputS(line, roster1, parse);
+            performCommandFourInputS(line, roster1, parse);
         } else if (parse[0].equals("PN")) {
             roster1.printByName();
+        } else if (parse[0].equals("PT")) {
+            roster1.printByDate();
+        } else if (parse[0].equals("Q")) {
+            System.out.println("\nTuition Manager terminated.");
+            System.exit(0);
         }
 
     }
@@ -323,10 +330,10 @@ public class TuitionManager {
         Scanner scanner = new Scanner(System.in);
         while (!(scanner.equals("Q"))) {
             String line = scanner.nextLine();
-            if (isValidInput(rosters1, line)) {
-                performCommands(line, rosters1);
-            } else if ((line.equals("\n")) || (line.equals(""))) {
+            if ((line.equals("\n")) || (line.equals(""))) {
                 ;
+            } else if (isValidInput(rosters1, line)) {
+                performCommands(line, rosters1);
             }
         }
     }
