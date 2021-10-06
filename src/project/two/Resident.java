@@ -14,6 +14,7 @@ public class Resident extends Student {
     private static final int RESIDENT_TUITION_FULL_TIME = 12536;
     private int RESIDENT_TUITION_PART_TIME = 404 * getTotalCreditHours();
     private boolean recievedFinancialAid = false;
+    private double recievedFinancialAidAmount = 0;
 
     /**
      * Resident student constructor
@@ -47,6 +48,16 @@ public class Resident extends Student {
             this.setWasCalculated(true);
         }
     }
+
+    /**
+     * Set the amount of financial aid recieved for the student
+     * @param financialAid
+     * @author Mikita Belausau
+     */
+    public void setRecievedFinancialAidAmount(double financialAid){
+        this.recievedFinancialAidAmount = financialAid;
+    }
+
 
     /**
      * Applies financial aid to a resident student

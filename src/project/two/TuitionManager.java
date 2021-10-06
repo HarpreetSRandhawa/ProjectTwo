@@ -73,6 +73,7 @@ public class TuitionManager {
             } else {
                 resident.setResidentFinancialAid(Double.valueOf(parse[3]));
                 resident.setFinancialAidRecieved(true);
+                resident.setRecievedFinancialAidAmount(Double.valueOf(parse[3]));
                 System.out.println("Tuition updated.");
             }
         } else {
