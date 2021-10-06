@@ -3,6 +3,8 @@
 */
 package project.two;
 
+import java.text.DecimalFormat;
+
 /**
  * TriState Student class, calculates tuitions due and creates TriState student objects.
  * @author Mikita Belausau, Harpreet Randhawa
@@ -82,29 +84,36 @@ public class TriState extends NonResident {
     */
     @Override
     public String toString() {
-    	//toString finished, just need the data from last payments
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        decimalFormat.setGroupingUsed(true);
+        decimalFormat.setGroupingSize(3);
+        
         if((this.triState.equals(NY)) && (this.getLastPaymentDate() == null)) {
         	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-        			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-        			":" + "payment date:" + " --/--/--" + ":" + "non-resident(tri-state)" + 
+        			+ "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+        			decimalFormat.format(this.getLastPayment()) +
+        			":" + "last payment date:" + " --/--/--" + ":" + "non-resident(tri-state)" + 
         			":" + "NY";
         }
         else if((this.triState.equals(CT)) && (this.getLastPaymentDate() == null)) {
         	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-        			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-        			":" + "payment date:" + " --/--/--" + ":" + "non-resident(tri-state)" + 
+        			+ "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+        			decimalFormat.format(this.getLastPayment()) +
+        			":" + "last payment date:" + " --/--/--" + ":" + "non-resident(tri-state)" + 
         			":" + "CT";
         }
         else if((this.triState.equals(NY)) && (this.getLastPaymentDate() != null)) {
         	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-        			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-        			":" + "payment date:" + this.getLastPaymentDate() + ":" + "non-resident(tri-state)" + 
+        			+ "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+        			decimalFormat.format(this.getLastPayment()) +
+        			":" + "last payment date: " + this.getLastPaymentDate().toString() + ":" + "non-resident(tri-state)" + 
         			":" + "NY";
         }
         else if((this.triState.equals(CT)) && (this.getLastPaymentDate() != null)) {
         	return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-        			+ "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-        			":" + "payment date:" + this.getLastPaymentDate() + ":" + "non-resident(tri-state)" + 
+        			+ "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+        			decimalFormat.format(this.getLastPayment()) +
+        			":" + "last payment date: " + this.getLastPaymentDate().toString() + ":" + "non-resident(tri-state)" + 
         			":" + "CT";
         }
         return "";

@@ -2,6 +2,8 @@
  * @author Mikita Belausau, Harpreet Randhawa
  */
 package project.two;
+import java.text.DecimalFormat;
+
 
 /**
  * Student class, calculates tuitions due and creates Student objects.
@@ -199,14 +201,20 @@ public class Student {
      */
     @Override
     public String toString() {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        decimalFormat.setGroupingUsed(true);
+        decimalFormat.setGroupingSize(3);
+        
+        
         if (this.getLastPaymentDate() == null) {
             return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-                    + "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-                    ":" + "payment date:" + " --/--/--";
+                    + "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+                    decimalFormat.format(this.getLastPayment()) + ":" + "last payment date:" + " --/--/--";
         } else {
             return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-                    + "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-                    ":" + "payment date:" + this.getLastPaymentDate();
+                    + "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+                    decimalFormat.format(this.getLastPayment()) + ":" + "last payment date: " 
+                    + this.getLastPaymentDate().toString();
         }
     }
 

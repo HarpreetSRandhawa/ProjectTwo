@@ -3,10 +3,12 @@
  */
 package project.two;
 
+import java.text.DecimalFormat;
+
 /**
  * Resident Student class, calculates tuitions due and creates Resident student objects.
  *
- * @author Mikita Belausau
+ * @author Mikita Belausau, Harpreet Randhawa
  */
 public class Resident extends Student {
     private static final int RESIDENT_TUITION_FULL_TIME = 12536;
@@ -84,14 +86,20 @@ public class Resident extends Student {
      */
     @Override
     public String toString() {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        decimalFormat.setGroupingUsed(true);
+        decimalFormat.setGroupingSize(3);
+        
         if (this.getLastPaymentDate() == null) {
             return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-                    + "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-                    ":" + "payment date:" + " --/--/--" + ":" + "resident";
+                    + "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+                    decimalFormat.format(this.getLastPayment()) +
+                    ":" + "last payment date:" + " --/--/--" + ":" + "resident";
         } else {
             return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-                    + "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-                    ":" + "payment date:" + this.getLastPaymentDate().toString() + ":" + "resident";
+                    + "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+                    decimalFormat.format(this.getLastPayment()) +
+                    ":" + "last payment date: " + this.getLastPaymentDate().toString() + ":" + "resident";
         }
     }
 

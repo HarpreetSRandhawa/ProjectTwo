@@ -6,7 +6,7 @@ package project.two;
 /**
  * Profile object for students, contains name and major.
  *
- * @author Harpreet Randhawa
+ * @author Mikita Belausau, Harpreet Randhawa
  */
 public class Profile {
     private String name;

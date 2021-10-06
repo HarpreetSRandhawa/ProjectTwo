@@ -4,7 +4,7 @@
 package project.two;
 
 /**
-Major has enums of type CS, IT, BA, EE, ME
+Major has enums of type CS, IT, BA, EE, ME.
 
 @author Harpreet Randhawa
 */

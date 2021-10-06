@@ -3,10 +3,12 @@
  */
 package project.two;
 
+import java.text.DecimalFormat;
+
 /**
  * NonResident Student class, calculates tuitions due and creates nonResident student objects.
  *
- * @author Mikita Belausau
+ * @author Mikita Belausau, Harpreet Randhawa
  */
 public class NonResident extends Student {
     private static final int NON_RESIDENT_TUITION_FULL_TIME = 29737;
@@ -53,14 +55,20 @@ public class NonResident extends Student {
      */
     @Override
     public String toString() {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        decimalFormat.setGroupingUsed(true);
+        decimalFormat.setGroupingSize(3);
+        
         if (this.getLastPaymentDate() == null) {
             return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-                    + "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-                    ":" + "payment date:" + " --/--/--" + ":" + "non-resident";
+                    + "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+                    decimalFormat.format(this.getLastPayment()) +
+            		":" + "last payment date:" + " --/--/--" + ":" + "non-resident";
         } else {
             return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-                    + "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-                    ":" + "payment date:" + this.getLastPaymentDate() + ":" + "non-resident";
+                    + "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+                    decimalFormat.format(this.getLastPayment()) +
+                    ":" + "last payment date: " + this.getLastPaymentDate().toString() + ":" + "non-resident";
         }
     }
 }

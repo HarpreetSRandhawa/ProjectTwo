@@ -3,6 +3,8 @@
  */
 package project.two;
 
+import java.text.DecimalFormat;
+
 /**
  * International Student class, calculates tuitions due and creates international student objects.
  *
@@ -30,7 +32,7 @@ public class International extends NonResident {
     /**
      * Get the International student's study abroad status.
      *
-     * @return this.studyAbroad.
+     * @return The study abroad status.
      * @author Harpreet Randhawa
      */
     public boolean getStudyAbroadStatus() {
@@ -82,25 +84,33 @@ public class International extends NonResident {
      */
     @Override
     public String toString() {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        decimalFormat.setGroupingUsed(true);
+        decimalFormat.setGroupingSize(3);
+        
         if ((this.getStudyAbroadStatus() == true) && (this.getLastPaymentDate() != null)) {
             return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-                    + "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-                    ":" + "payment date:" + this.getLastPaymentDate() + ":" + "non-resident" + ":" +
+                    + "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+                    decimalFormat.format(this.getLastPayment()) +
+                    ":" + "last payment date: " + this.getLastPaymentDate().toString() + ":" + "non-resident" + ":" +
                     "international" + ":" + "study abroad";
         } else if ((this.getStudyAbroadStatus() == false) && (this.getLastPaymentDate() != null)) {
             return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-                    + "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-                    ":" + "payment date:" + this.getLastPaymentDate() + ":" + "non-resident" + ":" +
+                    + "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+                    decimalFormat.format(this.getLastPayment()) +
+                    ":" + "last payment date: " + this.getLastPaymentDate().toString() + ":" + "non-resident" + ":" +
                     "international";
         } else if ((this.getStudyAbroadStatus() == true) && (this.getLastPaymentDate() == null)) {
             return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-                    + "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-                    ":" + "payment date:" + " --/--/--" + ":" + "non-resident" + ":" +
-                    "study abroad";
+                    + "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+                    decimalFormat.format(this.getLastPayment()) +
+                    ":" + "last payment date:" + " --/--/--" + ":" + "non-resident" + ":" +
+                    "international" + ":" + "study abroad";
         } else if ((this.getStudyAbroadStatus() == false) && (this.getLastPaymentDate() == null)) {
             return this.getName() + ":" + this.getMajor() + ":" + this.getTotalCreditHours() + " credit hours:"
-                    + "tuition due:" + this.getTuitionDue() + ":" + "last payment:" + this.getLastPayment() +
-                    ":" + "payment date:" + " --/--/--" + ":" + "non-resident" + ":" +
+                    + "tuition due:" + decimalFormat.format(this.getTuitionDue()) + ":" + "total payment:" + 
+                    decimalFormat.format(this.getLastPayment()) +
+                    ":" + "last payment date:" + " --/--/--" + ":" + "non-resident" + ":" +
                     "international";
         }
         return "international";

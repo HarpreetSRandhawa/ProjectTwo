@@ -20,7 +20,7 @@ public class TuitionManager {
     private static final int PROPER_LENGTH_FOR_AT = 5;
 
     /**
-     * Check to see if major input is correct
+     * Check to see if major input is correct.
      *
      * @param parse
      * @return true if major input is a valid major, false if not a valid major.
@@ -37,7 +37,7 @@ public class TuitionManager {
     }
 
     /**
-     * Turns a user input into a major object
+     * Turns a user input into a major object.
      *
      * @param parse
      * @return major object using user input
@@ -168,7 +168,7 @@ public class TuitionManager {
     }
 
     /**
-     * Checks to see if the given input for adding an international is correct and outputs the desired prints
+     * Checks to see if the given input for adding an international is correct and outputs the desired prints.
      *
      * @param roster1 The roster of students
      * @param parse   The given input string
@@ -282,7 +282,7 @@ public class TuitionManager {
     }
 
     /**
-     * Checks to see if the user input for making a payment is correctly formatted
+     * Checks to see if the user input for making a payment is correctly formatted.
      *
      * @param roster1
      * @param parse
