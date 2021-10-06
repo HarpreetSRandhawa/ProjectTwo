@@ -3,6 +3,10 @@
 */
 package project.two;
 
+/**
+ * TriState Student class, calculates tuitions due and creates TriState student objects.
+ * @author Mikita Belausau, Harpreet Randhawa
+ */
 public class TriState extends NonResident {
     private static final String NY = "NY";
     private static final String CT = "CT";
@@ -13,14 +17,13 @@ public class TriState extends NonResident {
     private String triState;
 
     /**
-    * Allows for proper calculation of tutionDue for an Tri-state student
-    
-    * @param name
-    * @param major
-    * @param TOTAL_CREDIT_HOURS
-    * @return the tuition due for a Tri-state student
-    * @author Mikita Belausau
-    */
+     * Constructor for TriState students.
+     * @param name
+     * @param major
+     * @param TOTAL_CREDIT_HOURS
+     * @param triState
+     * @author Mikita Belausau
+     */
     public TriState(String name, Major major, int TOTAL_CREDIT_HOURS, String triState){
         super(name, major, TOTAL_CREDIT_HOURS);
         this.triState = triState;
@@ -37,30 +40,32 @@ public class TriState extends NonResident {
         if(this.triState == null){
             ;
         }
-        else if ((this.getTotalCreditHours() < 12) && (this.triState.equals("NY"))) {
+        else if ((this.getTotalCreditHours() < MINIMUM_CREDIT_FOR_FULL_TIME) && (this.triState.equals(NY))) {
             this.setTuitionDue(((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME)));
             this.setWasCalculated(true);
         }
-        else if ((this.getTotalCreditHours() < 12) && (this.triState.equals("CT"))) {
+        else if ((this.getTotalCreditHours() < MINIMUM_CREDIT_FOR_FULL_TIME) && (this.triState.equals(CT))) {
             this.setTuitionDue(((TRI_STATE_TUITION_PART_TIME + UNIVERSITY_FEE_PART_TIME)));
             this.setWasCalculated(true);
         }
-        else if (((!(this.getTotalCreditHours() > 16))) && (this.triState.equals("NY"))) {
+        else if (((!(this.getTotalCreditHours() > MAXIMUM_CREDIT_FOR_FULL_TIME_WITH_NO_ADDITIONAL_FEES))) && (this.triState.equals(NY))) {
             this.setTuitionDue((((TRI_STATE_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME) - NYC_DISCOUNT)));
             this.setWasCalculated(true);
         }
-        else if (((!(this.getTotalCreditHours() > 16))) && (this.triState.equals("CT"))) {
+        else if (((!(this.getTotalCreditHours() > MAXIMUM_CREDIT_FOR_FULL_TIME_WITH_NO_ADDITIONAL_FEES))) && (this.triState.equals(CT))) {
             this.setTuitionDue((((TRI_STATE_TUITION_FULL_TIME + UNIVERSITY_FEE_FULL_TIME) - CT_DISCOUNT)));
             this.setWasCalculated(true);
         }
         else {
-        	if (this.triState.equals("NY")) {
-                this.setTuitionDue(((((TRI_STATE_TUITION_FULL_TIME + ((this.getTotalCreditHours() - 16) * 966))
+        	if (this.triState.equals(NY)) {
+                this.setTuitionDue(((((TRI_STATE_TUITION_FULL_TIME +
+                        ((this.getTotalCreditHours() - MAXIMUM_CREDIT_FOR_FULL_TIME_WITH_NO_ADDITIONAL_FEES) * 966))
                         + UNIVERSITY_FEE_FULL_TIME) - NYC_DISCOUNT)));
                 this.setWasCalculated(true);
         	}
-        	else if (this.triState.equals("CT")) {
-                this.setTuitionDue(((((TRI_STATE_TUITION_FULL_TIME + ((this.getTotalCreditHours() - 16) * 966))
+        	else if (this.triState.equals(CT)) {
+                this.setTuitionDue(((((TRI_STATE_TUITION_FULL_TIME +
+                        ((this.getTotalCreditHours() - MAXIMUM_CREDIT_FOR_FULL_TIME_WITH_NO_ADDITIONAL_FEES) * 966))
                         + UNIVERSITY_FEE_FULL_TIME) - CT_DISCOUNT)));
                 this.setWasCalculated(true);
         	}

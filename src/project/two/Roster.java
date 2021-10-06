@@ -3,6 +3,11 @@
  */
 package project.two;
 
+/**
+ * Roster class, initializes a student roster and performs operations on the roster.
+ *
+ * @author Harpreet Randhawa, Mikita Belausau
+ */
 public class Roster {
     private Student[] roster;
     private int size; //keep track of the number of students in the roster
@@ -10,19 +15,14 @@ public class Roster {
     private static final int GROWTH_FACTOR = 4;
     private static final int NOT_FOUND = -1;
 
+    /**
+     * Constructor for roster
+     *
+     * @author Harpreet Randhawa
+     */
     public Roster() {
         this.roster = new Student[4];
         this.size = 0;
-    }
-
-    /**
-     * Returns the size of the roster.
-     *
-     * @return size Roster size.
-     * @author Harpreet Randhawa
-     */
-    public int getSize() {
-        return size;
     }
 
     /**
@@ -126,13 +126,15 @@ public class Roster {
     }
 
     /**
+     * Checks if the student is a resident
+     *
      * @param student
      * @return The student or null if the student is not in the roster.
      * @author Mikita Belausau
      */
     public Student replaceFinancialAid(Student student) {
         int i = find(student);
-        if (i != -1) {
+        if (i != NOT_FOUND) {
             if (roster[i] instanceof Resident) {
                 return roster[i];
             }
@@ -149,7 +151,7 @@ public class Roster {
      */
     public Student replaceStudyAbroad(Student student) {
         int i = find(student);
-        if (i != -1) {
+        if (i != NOT_FOUND) {
             if (roster[i] instanceof International) {
                 return roster[i];
             }
@@ -201,6 +203,11 @@ public class Roster {
         }
     }
 
+    /**
+     * Creates a temporary roster of students who have made payments sorted by when they paid, and displays it.
+     *
+     * @author Mikita Belausau
+     */
     public void printByDate() {
         if (size == 0) {
             System.out.println("Student roster is empty!");
@@ -224,7 +231,8 @@ public class Roster {
             }
             for (int k = 0; k < tempRosterLength; k++) {
                 for (int l = 0; l < tempRosterLength; l++) {
-                    if ((k != l) && (((tempRoster[k].getLastPaymentDate()).compareTo((tempRoster[l].getLastPaymentDate()))) != 1)) {
+                    if ((k != l) &&
+                            (((tempRoster[k].getLastPaymentDate()).compareTo((tempRoster[l].getLastPaymentDate()))) != 1)) {
                         temp[0] = tempRoster[k];
                         tempRoster[k] = tempRoster[l];
                         tempRoster[l] = temp[0];
@@ -238,6 +246,11 @@ public class Roster {
         }
     }
 
+    /**
+     * Calculates tuitionDue For all students in roster, unless it was already calculated prior.
+     *
+     * @author Mikita Belausau
+     */
     public void calculateTuition() {
         for (int i = 0; i < size; i++) {
             if (!(roster[i].wasCalculated())) {

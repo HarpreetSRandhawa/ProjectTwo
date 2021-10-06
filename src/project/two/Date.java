@@ -1,84 +1,84 @@
 /**
-@author Mikita Belausau, Harpreet Randhawa
-*/
+ * @author Mikita Belausau, Harpreet Randhawa
+ */
 package project.two;
 
 import java.util.Calendar;
 
 /**
-Date class creates date objects, and also checks if they are valid dates as well. It also accepts
-date objects to see if they are valid.
+ Date class creates date objects, and also checks if they are valid dates as well. It also accepts
+ date objects to see if they are valid.
 
-@author Mikita Belausau, Harpreet Randhawa
-*/
+ @author Mikita Belausau, Harpreet Randhawa
+ */
 public class Date implements Comparable<Date> {
     private int year;
     private int month;
     private int day;
 
-    public static final int QUADRENNIAL = 4;
-    public static final int CENTENNIAL = 100;
-    public static final int QUATERCENTENNIAL = 400;
-    public static final int THE_TWENTY_TWENTY_ONE = 2021;
-    public static final int JANUARY = 1;
-    public static final int FEBRUARY = 2;
-    public static final int MARCH = 3;
-    public static final int APRIL = 4;
-    public static final int MAY = 5;
-    public static final int JUNE = 6;
-    public static final int JULY = 7;
-    public static final int AUGUST = 8;
-    public static final int SEPTEMBER = 9;
-    public static final int OCTOBER = 10;
-    public static final int NOVEMBER = 11;
-    public static final int DECEMBER = 12;
-    public static final int LEAP_YEAR_MAX_FEB_DATES = 29;
-    public static final int MINIMUM_DAYS_IN_A_MONTH = 1;
-    public static final int NON_LEAP_YEAR_MAX_FEB_DATES = 28;
-    public static final int THIRTY_DAY_MONTHS = 30;
-    public static final int THIRTY_ONE_DAY_MONTHS = 31;
-    public static final int MAX_MONTHS = 12;
-    public static final int LEFT_SIDE_GREATER = 1;
-    public static final int RIGHT_SIDE_GREATER = -1;
+    private static final int QUADRENNIAL = 4;
+    private static final int CENTENNIAL = 100;
+    private static final int QUATERCENTENNIAL = 400;
+    private static final int THE_TWENTY_TWENTY_ONE = 2021;
+    private static final int JANUARY = 1;
+    private static final int FEBRUARY = 2;
+    private static final int MARCH = 3;
+    private static final int APRIL = 4;
+    private static final int MAY = 5;
+    private static final int JUNE = 6;
+    private static final int JULY = 7;
+    private static final int AUGUST = 8;
+    private static final int SEPTEMBER = 9;
+    private static final int OCTOBER = 10;
+    private static final int NOVEMBER = 11;
+    private static final int DECEMBER = 12;
+    private static final int LEAP_YEAR_MAX_FEB_DATES = 29;
+    private static final int MINIMUM_DAYS_IN_A_MONTH = 1;
+    private static final int NON_LEAP_YEAR_MAX_FEB_DATES = 28;
+    private static final int THIRTY_DAY_MONTHS = 30;
+    private static final int THIRTY_ONE_DAY_MONTHS = 31;
+    private static final int MAX_MONTHS = 12;
+    private static final int LEFT_SIDE_GREATER = 1;
+    private static final int RIGHT_SIDE_GREATER = -1;
 
 
     /**
-    Getter for year
-    
-    @return year
-    @author Harpreet Randhawa
-    */
+     Getter for year
+
+     @return year
+     @author Harpreet Randhawa
+     */
     public int getYear() {
         return this.year;
     }
 
     /**
-    Getter for month
-    
-    @return month
-    @author Harpreet Randhawa
-    */
+     Getter for month
+
+     @return month
+     @author Harpreet Randhawa
+     */
     public int getMonth() {
         return this.month;
     }
 
     /**
-    Getter for day
-    
-    @return day
-    @author Harpreet Randhawa
-    */
+     Getter for day
+
+     @return day
+     @author Harpreet Randhawa
+     */
     public int getDay() {
         return this.day;
     }
 
 
     /**
-    Properly split a date of mm/dd/yy into a date object.
-    
-    @param date the album's date
-    @author Mikita Belausau
-    */
+     Properly split a date of mm/dd/yy into a date object.
+
+     @param date the album's date
+     @author Mikita Belausau
+     */
     public Date(String date) {
         String[] correctDate = date.split("/");
         this.year = Integer.parseInt(correctDate[2]);
@@ -87,10 +87,10 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-    Create an object with today's date.
-    
-    @author Mikita Belausau
-    */
+     Create an object with today's date.
+
+     @author Mikita Belausau
+     */
     public Date() {
         Calendar calendar = Calendar.getInstance();
         Date today = Date.this;
@@ -100,12 +100,12 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-    Checks if a leap-year-date is valid.
-    
-    @param date the album's date
-    @return true if the year is a leap year and the overall date is valid, false otherwise.
-    @author Mikita Belausau
-    */
+     Checks if a leap-year-date is valid.
+
+     @param date the album's date
+     @return true if the year is a leap year and the overall date is valid, false otherwise.
+     @author Mikita Belausau
+     */
     public boolean checkIfLeapYearDateIsValid(Date date) {
         if ((date.month == FEBRUARY) && (date.day > LEAP_YEAR_MAX_FEB_DATES
                 || date.day < MINIMUM_DAYS_IN_A_MONTH)) {
@@ -124,12 +124,12 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-    Check if a non-leap-year-date is a valid date.
-    
-    @param date the album's date
-    @return true if a non-leap year date is valid.
-    @author Mikita Belausau
-    */
+     Check if a non-leap-year-date is a valid date.
+
+     @param date the album's date
+     @return true if a non-leap year date is valid.
+     @author Mikita Belausau
+     */
     public boolean checkIfNonLeapYearDayIsValid(Date date) {
         if ((date.month == FEBRUARY) && (date.day > NON_LEAP_YEAR_MAX_FEB_DATES
                 || date.day < MINIMUM_DAYS_IN_A_MONTH)) {
@@ -148,12 +148,12 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-    Checks if the date object entered is a valid date, even if its a leap year.
-    
-    @param date the album's date
-    @return true if the given date is a valid date and returns false if the given date is not valid.
-    @author Mikita Belausau
-    */
+     Checks if the date object entered is a valid date, even if its a leap year.
+
+     @param date the album's date
+     @return true if the given date is a valid date and returns false if the given date is not valid.
+     @author Mikita Belausau
+     */
     public boolean isValid(Date date) {
         boolean leapYear = false;
         Date today = new Date();
@@ -183,14 +183,14 @@ public class Date implements Comparable<Date> {
         }
     }
 
-    
+
     /**
-    Compares the two given date objects.
-    
-    @param date the album's date
-    @return 1 if the left side is greater, and -1 if the right side is greater.
-    @author Mikita Belausau
-    */
+     Compares the two given date objects.
+
+     @param date the album's date
+     @return 1 if the left side is greater, and -1 if the right side is greater.
+     @author Mikita Belausau
+     */
     @Override
     public int compareTo(Date date) {
         if (this.year != date.year) {
@@ -204,19 +204,24 @@ public class Date implements Comparable<Date> {
         }
     }
 
+    /**
+     * Returns date object as a string with --/--/-- formatting
+     * @return date object with --/--/-- string formatting
+     * @author Mikita Belausau
+     */
     @Override
     public String toString() {
-        return this.getMonth()+"/"+this.getDay()+"/"+this.getYear();
+        return this.getMonth() + "/" + this.getDay() + "/" + this.getYear();
     }
 
     /**
-    Testbed main for the date class.
-    
-    @param args standard syntax
-    @author Mikita Belausau
-    */
+     Testbed main for the date class.
+
+     @param args standard syntax
+     @author Mikita Belausau
+     */
     public static void main(String[] args) {
-        //test case #1 day before 1980 should be bad
+        //test case #1 day before 2021 should be bad
         Date date = new Date("3/31/1800");
         boolean expectedResult = false;
         boolean result = date.isValid(date);
@@ -227,7 +232,7 @@ public class Date implements Comparable<Date> {
             System.out.println("Fail.");
         }
         //test case #2 invalid month
-        date = new Date("31/2/2000");
+        date = new Date("31/2/2021");
         result = date.isValid(date);
         System.out.println("Test Case #2: ");
         if (result == expectedResult) {
@@ -237,7 +242,7 @@ public class Date implements Comparable<Date> {
         }
         //test case #3 correct day
         expectedResult = true;
-        date = new Date("7/23/2020");
+        date = new Date("7/23/2021");
         result = date.isValid(date);
         System.out.println("Test Case #3: ");
         if (result == expectedResult) {
