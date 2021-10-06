@@ -20,10 +20,10 @@ public class TuitionManager {
     private static final int PROPER_LENGTH_FOR_AT = 5;
 
     /**
-     * Turns user input into Major object
+     * Check to see if major input is correct
      *
      * @param parse
-     * @return Major object
+     * @return true if major input is a valid major, false if not a valid major.
      * @author Mikita Belausau
      */
     private boolean majorCheck(String[] parse) {
