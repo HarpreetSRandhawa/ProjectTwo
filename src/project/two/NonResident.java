@@ -6,31 +6,31 @@ package project.two;
 import java.text.DecimalFormat;
 
 /**
- * NonResident Student class, calculates tuitions due and creates nonResident student objects.
- *
- * @author Mikita Belausau, Harpreet Randhawa
- */
+* NonResident Student class, calculates tuitions due and creates nonResident student objects.
+
+* @author Mikita Belausau, Harpreet Randhawa
+*/
 public class NonResident extends Student {
     private static final int NON_RESIDENT_TUITION_FULL_TIME = 29737;
     private int NON_RESIDENT_TUITION_PART_TIME = 966 * getTotalCreditHours();
 
     /**
-     * Constructor for nonResident students.
-     *
-     * @param name
-     * @param major
-     * @param TOTAL_CREDIT_HOURS
-     * @author Mikita Belausau
-     */
+    * Constructor for nonResident students.
+   
+    * @param name The student's name.
+    * @param major The student's major.
+    * @param TOTAL_CREDIT_HOURS The student's total credit hours.
+    * @author Mikita Belausau
+    */
     public NonResident(String name, Major major, int TOTAL_CREDIT_HOURS) {
         super(name, major, TOTAL_CREDIT_HOURS);
     }
 
     /**
-     * Calculate TuitionDue for nonResidents
-     *
-     * @author Mikita Belausau
-     */
+    * Calculate TuitionDue for nonResidents.
+    
+    * @author Mikita Belausau
+    */
     @Override
     public void tuitionDue() {
         if (this.getTotalCreditHours() < MINIMUM_CREDIT_FOR_FULL_TIME) {
@@ -48,11 +48,11 @@ public class NonResident extends Student {
     }
 
     /**
-     * Creates a textual representation of a non-resident in proper format
-     *
-     * @return Returns non-resident information
-     * @author Harpreet Randhawa
-     */
+    * Creates a textual representation of a non-resident in proper format.
+    
+    * @return Non-resident information.
+    * @author Harpreet Randhawa
+    */
     @Override
     public String toString() {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");

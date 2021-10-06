@@ -6,9 +6,10 @@ package project.two;
 import java.text.DecimalFormat;
 
 /**
- * TriState Student class, calculates tuitions due and creates TriState student objects.
- * @author Mikita Belausau, Harpreet Randhawa
- */
+* TriState Student class, calculates tuitions due and creates TriState student objects.
+
+* @author Mikita Belausau, Harpreet Randhawa
+*/
 public class TriState extends NonResident {
     private static final String NY = "NY";
     private static final String CT = "CT";
@@ -19,22 +20,22 @@ public class TriState extends NonResident {
     private String triState;
 
     /**
-     * Constructor for TriState students.
-     * @param name
-     * @param major
-     * @param TOTAL_CREDIT_HOURS
-     * @param triState
-     * @author Mikita Belausau
-     */
+    * Constructor for TriState students.
+    
+    * @param name The student's name.
+    * @param major The student's major.
+    * @param TOTAL_CREDIT_HOURS The student's total credit hours.
+    * @param triState The tri-state location
+    * @author Mikita Belausau
+    */
     public TriState(String name, Major major, int TOTAL_CREDIT_HOURS, String triState){
         super(name, major, TOTAL_CREDIT_HOURS);
         this.triState = triState;
     }
 
     /**
-    Calculates the tuition due for a tri-state student
+    Calculates the tuition due for a tri-state student.
     
-    @return Tri-state student tuition due
     @author Harpreet Randhawa
     */
     @Override
@@ -77,9 +78,9 @@ public class TriState extends NonResident {
 
     
     /**
-    Creates a textual representation of tri-state in proper format
+    Creates a textual representation of tri-state in proper format.
     
-    @return Returns tri-state information
+    @return Returns tri-state information.
     @author Harpreet Randhawa
     */
     @Override

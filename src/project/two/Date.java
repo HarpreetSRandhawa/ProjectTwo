@@ -6,11 +6,11 @@ package project.two;
 import java.util.Calendar;
 
 /**
- Date class creates date objects, and also checks if they are valid dates as well. It also accepts
- date objects to see if they are valid.
+Date class creates date objects, and also checks if they are valid dates as well. It also accepts
+date objects to see if they are valid.
 
- @author Mikita Belausau, Harpreet Randhawa
- */
+@author Mikita Belausau, Harpreet Randhawa
+*/
 public class Date implements Comparable<Date> {
     private int year;
     private int month;

@@ -6,10 +6,10 @@ package project.two;
 import java.util.Scanner;
 
 /**
- * TuitionManager class takes inputs from console and returns the proper output, whether its tuition related or roster related.
- *
- * @author Mikita Belausau, Harpreet Randhawa
- */
+* TuitionManager class takes inputs from console and returns the proper output, whether its tuition related or roster related.
+
+* @author Mikita Belausau, Harpreet Randhawa
+*/
 public class TuitionManager {
 
     private static final int MINIMUM_CREDITS = 3;
@@ -20,12 +20,12 @@ public class TuitionManager {
     private static final int PROPER_LENGTH_FOR_AT = 5;
 
     /**
-     * Check to see if major input is correct.
-     *
-     * @param parse
-     * @return true if major input is a valid major, false if not a valid major.
-     * @author Mikita Belausau
-     */
+    * Check to see if major input is correct.
+    
+    * @param parse The given input string.
+    * @return True if major input is a valid major, false if not a valid major.
+    * @author Mikita Belausau
+    */
     private boolean majorCheck(String[] parse) {
         if (parse[2].equalsIgnoreCase("CS") || parse[2].equalsIgnoreCase("IT")
                 || parse[2].equalsIgnoreCase("BA") || parse[2].equalsIgnoreCase("EE") ||
@@ -37,12 +37,12 @@ public class TuitionManager {
     }
 
     /**
-     * Turns a user input into a major object.
-     *
-     * @param parse
-     * @return major object using user input
-     * @author Mikita Belausau
-     */
+    * Turns a user input into a major object.
+    
+    * @param parse The given input string.
+    * @return Major object using user input.
+    * @author Mikita Belausau
+    */
     private Major inputToMajor(String[] parse) {
         Major major = null;
         if (parse[2].equalsIgnoreCase("CS") || parse[2].equalsIgnoreCase("IT")
@@ -54,12 +54,12 @@ public class TuitionManager {
     }
 
     /**
-     * Perform all financial aid commands entered by user.
-     *
-     * @param roster1
-     * @param parse
-     * @author Mikita Belausau
-     */
+    * Perform all financial aid commands entered by user.
+    
+    * @param roster1 The student roster.
+    * @param parse The given input string.
+    * @author Mikita Belausau
+    */
     private void performCommandFourInputF(Roster roster1, String[] parse) {
         Student student = new Student(parse[1], inputToMajor(parse), PLACEHOLDER_FOR_CREDIT_HOURS);
         if (roster1.studentInRoster(student) == null) {
@@ -82,40 +82,37 @@ public class TuitionManager {
     }
 
     /**
-     * Updates the abroad status, total credit hours, tuition due, and payment dates for International students.
-     *
-     * @param roster1 The roster of students
-     * @param parse   The given input string
-     * @return The desired print output
-     * @author Harpreet Randhawa
-     */
+    * Updates the abroad status, total credit hours, tuition due, and payment dates for International students.
+    
+    * @param roster1 The roster of students.
+    * @param parse The given input string.
+    * @return The desired print output.
+    * @author Harpreet Randhawa
+    */
     private void performCommandFourInputS(Roster roster1, String[] parse) {
         Student student = new Student(parse[1], inputToMajor(parse), PLACEHOLDER_FOR_CREDIT_HOURS);
         if (roster1.studentInRoster(student) == null) {
             System.out.println("Couldn't find the international student.");
-        } else if (roster1.replaceStudyAbroad(student) != null) {
+        } 
+        else if (roster1.replaceStudyAbroad(student) != null) {
             International international = (International) roster1.replaceStudyAbroad(student);
-            if (international.getTotalCreditHours() < MINIMUM_CREDIT_FOR_FULL_TIME) {
-                System.out.println("Parttime student doesn't qualify for the award.");
-            } else {
                 international.setStudyAbroadStatus(true);
                 international.setTotalCreditHours(12);
                 international.setTuitionDue(0);
                 international.tuitionDue();
                 international.setLastPaymentDate(null);
-                System.out.println("Tuition updated.");
-            }
+                System.out.println("Tuition updated.");            
         }
     }
 
     /**
-     * Checks to see if the given input for adding a resident is correct and outputs the desired prints.
-     *
-     * @param roster1 The roster of students
-     * @param parse   The given input string
-     * @return The desired print output.
-     * @author Mikita Belausau
-     */
+    * Checks to see if the given input for adding a resident is correct and outputs the desired prints.
+    
+    * @param roster1 The roster of students.
+    * @param parse The given input string.
+    * @return The desired print output.
+    * @author Mikita Belausau
+    */
     private void performCommandFourInputsAR(Roster roster1, String[] parse) {
         Resident resident = new Resident(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]));
         if (roster1.add(resident)) {
@@ -126,13 +123,13 @@ public class TuitionManager {
     }
 
     /**
-     * Checks to see if the given input for adding a transfer student is correct and outputs the desired prints.
-     *
-     * @param roster1 The roster of students
-     * @param parse   The given input string
-     * @return The desired print output.
-     * @author Harpreet Randhawa
-     */
+    * Checks to see if the given input for adding a transfer student is correct and outputs the desired prints.
+    
+    * @param roster1 The roster of students.
+    * @param parse The given input string.
+    * @return The desired print output.
+    * @author Harpreet Randhawa
+    */
     private void performCommandFourInputAT(Roster roster1, String[] parse) {
 
         if (parse.length != PROPER_LENGTH_FOR_AT) {
@@ -152,13 +149,13 @@ public class TuitionManager {
     }
 
     /**
-     * Checks to see if the given input for adding a nonResident is correct and outputs the desired prints.
-     *
-     * @param roster1 The roster of students
-     * @param parse   The given input string
-     * @return The desired print output.
-     * @author Mikita Belausau
-     */
+    * Checks to see if the given input for adding a nonResident is correct and outputs the desired prints.
+    
+    * @param roster1 The roster of students.
+    * @param parse The given input string.
+    * @return The desired print output.
+    * @author Mikita Belausau
+    */
     private void performCommandFourInputAN(Roster roster1, String[] parse) {
         NonResident nonResident = new NonResident(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]));
         if (roster1.add(nonResident)) {
@@ -169,13 +166,13 @@ public class TuitionManager {
     }
 
     /**
-     * Checks to see if the given input for adding an international is correct and outputs the desired prints.
-     *
-     * @param roster1 The roster of students
-     * @param parse   The given input string
-     * @return The desired print output
-     * @author Harpreet Randhawa, Mikita Belausau
-     */
+    * Checks to see if the given input for adding an international is correct and outputs the desired prints.
+    
+    * @param roster1 The roster of students.
+    * @param parse The given input string.
+    * @return The desired print output.
+    * @author Harpreet Randhawa, Mikita Belausau
+    */
     private void performCommandFourInputAI(Roster roster1, String[] parse) {
         International international = new International(parse[1], inputToMajor(parse), Integer.valueOf(parse[3]), Boolean.valueOf(parse[4]));
         if ((Integer.valueOf(parse[3]) >= MINIMUM_CREDIT_FOR_FULL_TIME)) {
@@ -188,12 +185,12 @@ public class TuitionManager {
     }
 
     /**
-     * Checks to make sure the credit hours entered when adding a student is correctly inputed.
-     *
-     * @param parse
-     * @return returns true if credit hours was inputed correctly, false if not.
-     * @author Mikita Belausau
-     */
+    * Checks to make sure the credit hours entered when adding a student is correctly inputed.
+    
+    * @param parse The parsed string.
+    * @return returns true if credit hours was inputed correctly, false if not.
+    * @author Mikita Belausau
+    */
     private boolean creditHourCheck(String[] parse) {
         if (!(parse[3].matches("-?\\d+"))) {
             System.out.println("Invalid credit hours.");
@@ -212,13 +209,13 @@ public class TuitionManager {
     }
 
     /**
-     * Performs all commands that have to do with deleting a student from a roster.
-     *
-     * @param roster1
-     * @param parse
-     * @return true if the student was removed, and false if the student was not removed.
-     * @author Mikita Belausau
-     */
+    * Performs all commands that have to do with deleting a student from a roster.
+    
+    * @param roster1 The student roster.
+    * @param parse The given input string.
+    * @return true if the student was removed, and false if the student was not removed.
+    * @author Mikita Belausau
+    */
     private boolean performCommandThreeInputDelete(Roster roster1, String[] parse) {
         Student student = new Student(parse[1], inputToMajor(parse), PLACEHOLDER_FOR_CREDIT_HOURS);
         if (roster1.remove(student)) {
@@ -231,12 +228,12 @@ public class TuitionManager {
     }
 
     /**
-     * Checks to see if the input by user is correctly formatted for adding a student to the roster.
-     *
-     * @param parse
-     * @return true if the user input is formatted correctly for adding a student to roster, false if not.
-     * @author Mikita Belausau
-     */
+    * Checks to see if the input by user is correctly formatted for adding a student to the roster.
+    
+    * @param parse The given input string.
+    * @return true if the user input is formatted correctly for adding a student to roster, false if not.
+    * @author Mikita Belausau
+    */
     private boolean validCheckRosterAdd(String[] parse) {
         if (parse.length == 1) {
             System.out.println("Missing data in command line.");
@@ -256,12 +253,12 @@ public class TuitionManager {
     }
 
     /**
-     * All user inputs that are only one line are checked to make sure they're valid inputs.
-     *
-     * @param parse
-     * @return true if the user input is supported by the program, false if not.
-     * @author Mikita Belausau
-     */
+    * All user inputs that are only one line are checked to make sure they're valid inputs.
+    
+    * @param parse The given input string.
+    * @return true if the user input is supported by the program, false if not.
+    * @author Mikita Belausau
+    */
     private boolean validityCheckOne(String[] parse) {
         if (!(parse[0].equals("C") || parse[0].equals("P") || parse[0].equals("PN") || parse[0].equals("PT")
                 || parse[0].equals("Q"))) {
@@ -272,24 +269,24 @@ public class TuitionManager {
     }
 
     /**
-     * Calculates the tuition due for all students in the roster if they arent already.
-     *
-     * @param roster1
-     * @author Mikkita Belausau
-     */
+    * Calculates the tuition due for all students in the roster if they arent already.
+    
+    * @param roster1 The student roster.
+    * @author Mikkita Belausau
+    */
     private void cInput(Roster roster1) {
         roster1.calculateTuition();
         System.out.println("Calculation completed.");
     }
 
     /**
-     * Checks to see if the user input for making a payment is correctly formatted.
-     *
-     * @param roster1
-     * @param parse
-     * @return true if the payment info is valid, false if not.
-     * @author Mikita Belausau
-     */
+    * Checks to see if the user input for making a payment is correctly formatted.
+    
+    * @param roster1 The student roster.
+    * @param parse The given input string.
+    * @return true if the payment info is valid, false if not.
+    * @author Mikita Belausau
+    */
     private boolean paymentValidityCheck(Roster roster1, String[] parse) {
         if (parse.length == 3) {
             System.out.println("Payment amount missing.");
@@ -312,12 +309,12 @@ public class TuitionManager {
     }
 
     /**
-     * Performs all commands that pay for a students tuition.
-     *
-     * @param roster1
-     * @param parse
-     * @author Mikita Belausau
-     */
+    * Performs all commands that pay for a students tuition.
+    
+    * @param roster1 The student roster.
+    * @param parse The given input string.
+    * @author Mikita Belausau
+    */
     private void paymentInput(Roster roster1, String[] parse) {
         Date paymentDate = new Date(parse[4]);
         Student student = new Student(parse[1], inputToMajor(parse), PLACEHOLDER_FOR_CREDIT_HOURS);
@@ -330,12 +327,12 @@ public class TuitionManager {
     }
 
     /**
-     * Checks to see if a users input is formatted correctly for students receiving financial aid.
-     *
-     * @param parse
-     * @return true if the user input is correctly formatted, false if not.
-     * @author Mikita Belausau
-     */
+    * Checks to see if a users input is formatted correctly for students receiving financial aid.
+    
+    * @param parse The given input string.
+    * @return true if the user input is correctly formatted, false if not.
+    * @author Mikita Belausau
+    */
     private boolean validityCheckF(String[] parse) {
         if (parse.length == 3) {
             System.out.println("Missing the amount.");
@@ -349,12 +346,12 @@ public class TuitionManager {
     }
 
     /**
-     * Perform all commands by calling the necessary methods in the program based on the users input.
-     *
-     * @param line
-     * @param roster1
-     * @author Mikita Belausau
-     */
+    * Perform all commands by calling the necessary methods in the program based on the users input.
+    
+    * @param line The given line.
+    * @param roster1 The student roster.
+    * @author Mikita Belausau
+    */
     private void performCommands(String line, Roster roster1) {
         String[] parse = line.split(",");
         if ((parse[0].equals("AR"))) {
@@ -389,13 +386,13 @@ public class TuitionManager {
     }
 
     /**
-     * Checks users input to make sure it is valid.
-     *
-     * @param roster1
-     * @param line
-     * @return True if the user input is valid formatting, false if not.
-     * @author Mikita Belausau
-     */
+    * Checks users input to make sure it is valid.
+    
+    * @param roster1 The student roster.
+    * @param line The given line.
+    * @return True if the user input is valid formatting, false if not.
+    * @author Mikita Belausau
+    */
     private boolean isValidInput(Roster roster1, String line) {
         String[] parse = line.split(",");
         if ((parse[0].equals("F"))) {
@@ -411,10 +408,10 @@ public class TuitionManager {
     }
 
     /**
-     * Runs Tuition Manager.
-     *
-     * @author Mikita Belausau
-     */
+    * Runs Tuition Manager.
+   
+    * @author Mikita Belausau
+    */
     public void run() {
         System.out.println("Tuition Manager starts running.");
         Roster rosters1 = new Roster();
