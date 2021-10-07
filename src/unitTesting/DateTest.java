@@ -28,5 +28,11 @@ public class DateTest {
         assertFalse(date.isValid(date));
         date = new Date("9/22/2021"); // A day that you can pay tuition on since its mm/dd/yr is valid + its before tday 10/7/2021
         assertTrue(date.isValid(date));
+        date = new Date("0/23/2021"); //0 isnt a valid month
+        assertFalse(date.isValid(date));
+        date = new Date("9/0/2021"); //0 isnt a valid date
+        assertFalse(date.isValid(date));
+        date = new Date("9/23/0"); //0 isnt a valid yr
+        assertFalse(date.isValid(date));
     }
 }

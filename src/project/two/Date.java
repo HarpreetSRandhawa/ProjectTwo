@@ -157,7 +157,7 @@ public class Date implements Comparable<Date> {
     public boolean isValid(Date date) {
         boolean leapYear = false;
         Date today = new Date();
-        if (date.month > MAX_MONTHS || date.month < 0 || date.year < 0 || date.day < 0) {
+        if (date.month > MAX_MONTHS || date.month <= 0 || date.year <= 0 || date.day <= 0) {
             return false;
         }
         if (date.year > today.year) {
