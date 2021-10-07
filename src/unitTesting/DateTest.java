@@ -1,7 +1,6 @@
 package unitTesting;
 
 import project.two.Date;
-
 import static org.junit.Assert.*;
 
 public class DateTest {
