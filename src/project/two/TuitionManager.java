@@ -11,7 +11,6 @@ import java.util.Scanner;
 * @author Mikita Belausau, Harpreet Randhawa
 */
 public class TuitionManager {
-
     private static final int MINIMUM_CREDITS = 3;
     private static final int MAXIMUM_CREDITS = 24;
     private static final int MAXIMUM_FINANCIAL_AID = 10000;

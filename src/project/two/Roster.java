@@ -232,7 +232,7 @@ public class Roster {
             for (int k = 0; k < tempRosterLength; k++) {
                 for (int l = 0; l < tempRosterLength; l++) {
                     if ((k != l) &&
-                            (((tempRoster[k].getLastPaymentDate()).compareTo((tempRoster[l].getLastPaymentDate()))) != 1)) {
+                            (((tempRoster[k].getLastPaymentDate()).compareTo((tempRoster[l].getLastPaymentDate()))) < 0)) {
                         temp[0] = tempRoster[k];
                         tempRoster[k] = tempRoster[l];
                         tempRoster[l] = temp[0];
