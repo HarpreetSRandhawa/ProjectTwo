@@ -36,7 +36,13 @@ public class Student {
         this.profile = new Profile(name, major);
     }
 
-    public Profile getProfile(){
+    /**
+     * Getter for profile of a student
+     *
+     * @return returns a profile of the student which includes name and major
+     * @author Mikita Belausau
+     */
+    public Profile getProfile() {
         return this.profile;
     }
 
