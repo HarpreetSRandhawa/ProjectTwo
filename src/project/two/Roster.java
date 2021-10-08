@@ -189,7 +189,7 @@ public class Roster {
             Student[] temp = new Student[1];
             for (int i = 0; i < this.size; i++) {
                 for (int j = i + 1; j < this.size; j++) {
-                    if (roster[i].getName().compareTo(roster[j].getName()) > 0) {
+                    if (roster[i].getProfile().getName().compareTo(roster[j].getProfile().getName()) > 0) {
                         temp[0] = roster[i];
                         roster[i] = roster[j];
                         roster[j] = temp[0];
