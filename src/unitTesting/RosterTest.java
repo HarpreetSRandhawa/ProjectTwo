@@ -37,7 +37,7 @@ public class RosterTest {
     public void remove() {
      	Student studentOne = new Student("Person one", Major.CS, 12);
     	Roster roster = new Roster();
-    	roster.add(studentOne);
+    	assertTrue(roster.add(studentOne)); //test to see if add works
     	Student studentTwo = new Student("Person two", Major.IT, 15);
     	roster.add(studentTwo);
     	Student studentThree = new Student("Person three", Major.EE, 16);
@@ -45,9 +45,10 @@ public class RosterTest {
     	Student studentFour = new Student("Person four", Major.ME, 18);
     	roster.add(studentFour);
     	Student studentFive = new Student("Person five", Major.CS, 9);
-    	roster.add(studentFive);
+    	assertTrue(roster.add(studentFive)); //test to see if grow works
     	Student studentSix = new Student("Person six", Major.BA, 7);
     	roster.add(studentSix);
+		Student studentEight = new Student("Person seven", Major.CS, 12);
     	
     	// Test to remove a student
     	assertTrue(roster.remove(studentOne));
@@ -60,6 +61,9 @@ public class RosterTest {
     	Student studentSeven = new Student("Person seven", Major.EE, 12);
     	rosterTwo.add(studentSeven);
     	assertFalse(roster.remove(studentSeven));
+
+		//Test to remove a student that was never added to the roster
+		assertFalse(roster.remove(studentEight));
     	
     }
 }
