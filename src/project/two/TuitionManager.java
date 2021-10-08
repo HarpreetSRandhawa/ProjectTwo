@@ -85,7 +85,6 @@ public class TuitionManager {
     
     * @param roster1 The roster of students.
     * @param parse The given input string.
-    * @return The desired print output.
     * @author Harpreet Randhawa
     */
     private void performCommandFourInputS(Roster roster1, String[] parse) {
@@ -109,7 +108,6 @@ public class TuitionManager {
     
     * @param roster1 The roster of students.
     * @param parse The given input string.
-    * @return The desired print output.
     * @author Mikita Belausau
     */
     private void performCommandFourInputsAR(Roster roster1, String[] parse) {
@@ -126,7 +124,6 @@ public class TuitionManager {
     
     * @param roster1 The roster of students.
     * @param parse The given input string.
-    * @return The desired print output.
     * @author Harpreet Randhawa
     */
     private void performCommandFourInputAT(Roster roster1, String[] parse) {
@@ -152,7 +149,6 @@ public class TuitionManager {
     
     * @param roster1 The roster of students.
     * @param parse The given input string.
-    * @return The desired print output.
     * @author Mikita Belausau
     */
     private void performCommandFourInputAN(Roster roster1, String[] parse) {
@@ -169,7 +165,6 @@ public class TuitionManager {
     
     * @param roster1 The roster of students.
     * @param parse The given input string.
-    * @return The desired print output.
     * @author Harpreet Randhawa, Mikita Belausau
     */
     private void performCommandFourInputAI(Roster roster1, String[] parse) {
